@@ -1,14 +1,13 @@
-import React from "react";
+import React, { Component } from "react";
+import LandingPage from "./landingPage.js";
 import "./App.css";
 
-function App() {
-  return (
-    <div>
-      <header>
-        <p>Hello World!</p>
-      </header>
-    </div>
-  );
-}
+class App extends Component {
+   render(){
+      return(
+         <LandingPage/>
+      );
+   }
+};
 
 export default App;
