@@ -6,11 +6,11 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 class App extends Component {
   render() {
-    return(
+    return (
       <Router>
-         <Route exact path="/" component={LandingPage} />
+        <Route exact path="/" component={LandingPage} />
       </Router>
-   );
+    );
   }
 }
 

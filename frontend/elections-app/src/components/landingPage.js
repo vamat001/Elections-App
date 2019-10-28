@@ -34,7 +34,7 @@ class landingPage extends Component {
       return(
          <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
-         <div class="site-wrap"  id="home-section">
+         <div class="site-wrap"  id="Home">
 
            <div class="site-mobile-menu site-navbar-target">
              <div class="site-mobile-menu-header">
@@ -48,7 +48,7 @@ class landingPage extends Component {
            <div class="container d-none d-lg-block">
              <div class="row">
                <div class="col-12 text-center mb-4 mt-5">
-                   <h1 class="mb-0 site-logo"><a href="index.html" class="text-black h2 mb-0">UCR Elections<span class="text-primary"></span> </a></h1>
+                   <h1 class="mb-0 site-logo"><a href="index.html" class="text-black h2 mb-0"><span class="text-primary"></span> </a></h1>
                  </div>
              </div>
            </div>
@@ -65,12 +65,12 @@ class landingPage extends Component {
                    <nav class="site-navigation position-relative text-right" role="navigation">
 
                      <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                       <li><a href="#home-section" class="nav-link">Home</a></li>
-                       <li><a href="#features-section" class="nav-link">Features</a></li>
-                       <li><a href="#about-section" class="nav-link">About Us</a></li>
-                       <li><a href="#testimonials-section" class="nav-link">Testimonials</a></li>
-                       <li><a href="#blog-section" class="nav-link">Blog</a></li>
-                       <li><a href="#contact-section" class="nav-link">Contact</a></li>
+                       <li><a href="#Home" class="nav-link">Home</a></li>
+                       <li><a href="#Referendums" class="nav-link">Referendums</a></li>
+                       <li><a href="#Candidates" class="nav-link">Candidates</a></li>
+                       <li><a href="#Forms" class="nav-link">Forms</a></li>
+                       <li><a href="#" class="nav-link">Vote</a></li>
+                       <li><a href="#Questions" class="nav-link">Questions?</a></li>
                      </ul>
                    </nav>
                  </div>
@@ -90,8 +90,6 @@ class landingPage extends Component {
 
                  <div class="col-md-12" style={{position: 'relative'}} data-aos="fade-up">
 
-                   <img src="images/landing_1.png" alt="Image" class="img-fluid img-absolute" />
-
                    <div class="row mb-4">
                      <div class="col-lg-4 mr-auto">
                        <h1>Grow Your Business Faster</h1>
@@ -109,8 +107,8 @@ class landingPage extends Component {
              </div>
            </div>
 
-
-           <div class="site-section bg-light" id="features-section">
+          {/*Referendums*/}
+           <div class="site-section bg-light" id="Referendums">
              <div class="container">
                <div class="row mb-5">
                  <div class="col-12 text-center">
@@ -204,7 +202,7 @@ class landingPage extends Component {
              </div>
            </div>
 
-           <div class="feature-big">
+           <div class="feature-big" id="Candidates">
              <div class="container">
                <div class="row mb-5 site-section border-bottom">
                  <div class="col-lg-7">
@@ -263,7 +261,7 @@ class landingPage extends Component {
            </div>
 
 
-           <div class="site-section bg-light" id="about-section">
+           <div class="site-section bg-light" id="Forms">
              <div class="container">
                <div class="row mb-5">
                  <div class="col-12 text-center">
@@ -398,7 +396,7 @@ class landingPage extends Component {
              </div>
            </div>
 
-           <div class="site-section bg-light" id="contact-section">
+           <div class="site-section bg-light" id="Questions">
              <div class="container">
                <div class="row mb-5">
                  <div class="col-12 text-center">
