@@ -84,7 +84,20 @@ h1, h2, h3, h4, h5,
     .btn.btn-primary:hover {
       background: transparent;
       border-color: #00d2b5;
-      color: #000; }
+      color: #000000; }
+
+
+      .btn.btn-primary2 {
+        border-width: 2px;
+        background: #00d2b5;
+        border-color: #00d2b5;
+        color: #fff;
+        -webkit-box-shadow: 0 4px 20px -5px rgba(0, 210, 181, 0.4);
+        box-shadow: 0 4px 20px -5px rgba(0, 210, 181, 0.4); }
+        .btn.btn-primary2:hover {
+          background: transparent;
+          border-color: #00d2b5;
+          color: #FFFFFF; }
 
 .line-height-1 {
   line-height: 1 !important; }

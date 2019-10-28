@@ -1,36 +1,13 @@
 import React, { Component } from "react";
-import firebase, { auth, provider } from './firebase.js';
 
 class landingPage extends Component {
-   constructor(){
-      super();
-      this.state = {
-         user: null,
-         isAuthenticated: false
-      };
-   }
 
-   login = () => {
-      auth.signInWithPopup(provider)
-    .then((result) => {
-      const user = result.user;
-      this.setState({ user });
-    });
-   }
-
-   logout = () => {
-      auth.signOut()
-    .then(() => {
-      this.setState({ user: null });
-    });
+   goToLogin = () => {
+      this.props.history.push('/login');
    }
 
 
    render(){
-      console.log(this.state);
-      if(this.state.user !== null){
-
-      }
       return(
          <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
@@ -48,7 +25,7 @@ class landingPage extends Component {
            <div class="container d-none d-lg-block">
              <div class="row">
                <div class="col-12 text-center mb-4 mt-5">
-                   <h1 class="mb-0 site-logo"><a href="index.html" class="text-black h2 mb-0"><span class="text-primary"></span> </a></h1>
+                   <h1 class="mb-0 site-logo text-black h2 mb-0">UCR Elections<span class="text-primary"></span></h1>
                  </div>
              </div>
            </div>
@@ -58,7 +35,7 @@ class landingPage extends Component {
                <div class="row align-items-center">
 
                  <div class="col-6 col-md-6 col-xl-2  d-block d-lg-none">
-                   <h1 class="mb-0 site-logo"><a href="index.html" class="text-black h2 mb-0">Landerz<span class="text-primary">.</span> </a></h1>
+                   <h1 class="mb-0 site-logo"><a href="index.html" class="text-black h2 mb-0">UCR Elections<span class="text-primary">.</span> </a></h1>
                  </div>
 
                  <div class="col-12 col-md-10 main-menu">
@@ -95,7 +72,7 @@ class landingPage extends Component {
                        <h1>Grow Your Business Faster</h1>
                        <p class="mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam assumenda ea quo cupiditate facere deleniti fuga officia.</p>
                        <div>
-                         <button class="btn btn-primary mr-2 mb-2"> Vote Now</button>
+                         <button class="btn btn-primary mr-2 mb-2" onClick={this.goToLogin}>Vote Now</button>
                        </div>
                      </div>
 
