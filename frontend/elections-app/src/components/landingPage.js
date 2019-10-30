@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./landingPage.css";
 
 class landingPage extends Component {
 
@@ -22,11 +23,11 @@ class landingPage extends Component {
              <div class="site-mobile-menu-body"></div>
            </div>
 
-           <div class="container d-none d-lg-block">
+           <div>
              <div class="row">
-               <div class="col-12 text-center mb-4 mt-5">
+               {/*<div class="col-12 text-center mb-4 mt-5">
                    <h1 class="mb-0 site-logo text-black h2 mb-0">UCR Elections<span class="text-primary"></span></h1>
-                 </div>
+      </div>*/}
              </div>
            </div>
            <header class="site-navbar py-md-4 js-sticky-header site-navbar-target" role="banner">
