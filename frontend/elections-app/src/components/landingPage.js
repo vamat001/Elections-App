@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./landingPage.css";
 
 class landingPage extends Component {
 
@@ -23,11 +22,11 @@ class landingPage extends Component {
              <div class="site-mobile-menu-body"></div>
            </div>
 
-           <div>
+           <div class="container d-none d-lg-block">
              <div class="row">
-               {/*<div class="col-12 text-center mb-4 mt-5">
+               <div class="col-12 text-center mb-4 mt-5">
                    <h1 class="mb-0 site-logo text-black h2 mb-0">UCR Elections<span class="text-primary"></span></h1>
-      </div>*/}
+                 </div>
              </div>
            </div>
            <header class="site-navbar py-md-4 js-sticky-header site-navbar-target" role="banner">
@@ -45,10 +44,10 @@ class landingPage extends Component {
                      <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                        <li><a href="#Home" class="nav-link">Home</a></li>
                        <li><a href="#Referendums" class="nav-link">Referendums</a></li>
-                       <li><a href="#Candidates" class="nav-link">Candidates</a></li>
-                       <li><a href="#Forms" class="nav-link">Forms</a></li>
+                       <li><a href="#testimonials-section" class="nav-link">Candidates</a></li>
+                       <li><a href="#" class="nav-link">Positions</a></li>
                        <li><a href="#" class="nav-link">Vote</a></li>
-                       <li><a href="#Questions" class="nav-link">Questions?</a></li>
+                       <li><a href="#Questions" class="nav-link">Contact Us</a></li>
                      </ul>
                    </nav>
                  </div>
@@ -70,7 +69,7 @@ class landingPage extends Component {
 
                    <div class="row mb-4">
                      <div class="col-lg-4 mr-auto">
-                       <h1>Grow Your Business Faster</h1>
+                       <h1>Voting is Open!</h1>
                        <p class="mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam assumenda ea quo cupiditate facere deleniti fuga officia.</p>
                        <div>
                          <button class="btn btn-primary mr-2 mb-2" onClick={this.goToLogin}>Vote Now</button>
@@ -90,7 +89,7 @@ class landingPage extends Component {
              <div class="container">
                <div class="row mb-5">
                  <div class="col-12 text-center">
-                   <h2 class="section-title mb-3">Features</h2>
+                   <h2 class="section-title mb-3">Referendums</h2>
                  </div>
                </div>
                <div class="row align-items-stretch">
@@ -101,9 +100,8 @@ class landingPage extends Component {
                        <span class="icon-wrap"><span class="text-primary icon-autorenew"></span></span>
                      </div>
                      <div>
-                       <h3>Business Consulting</h3>
+                       <h3>Referendum 1</h3>
                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                       <p><a href="#">Learn More</a></p>
                      </div>
                    </div>
 
@@ -115,9 +113,8 @@ class landingPage extends Component {
                        <span class="icon-wrap"><span class="text-primary icon-store_mall_directory"></span></span>
                      </div>
                      <div>
-                       <h3>Market Analysis</h3>
+                       <h3>Referendum 2</h3>
                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                       <p><a href="#">Learn More</a></p>
                      </div>
                    </div>
                  </div>
@@ -127,9 +124,8 @@ class landingPage extends Component {
                        <span class="icon-wrap"><span class="text-primary icon-shopping_basket"></span></span>
                      </div>
                      <div>
-                       <h3>User Monitoring</h3>
+                       <h3>Referendum 3</h3>
                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                       <p><a href="#">Learn More</a></p>
                      </div>
                    </div>
                  </div>
@@ -141,9 +137,8 @@ class landingPage extends Component {
                        <span class="icon-wrap"><span class="text-primary icon-settings_backup_restore"></span></span>
                      </div>
                      <div>
-                       <h3>Insurance Consulting</h3>
+                       <h3>Referendum 4</h3>
                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                       <p><a href="#">Learn More</a></p>
                      </div>
                    </div>
                  </div>
@@ -154,9 +149,8 @@ class landingPage extends Component {
                        <span class="icon-wrap"><span class="text-primary icon-sentiment_satisfied"></span></span>
                      </div>
                      <div>
-                       <h3>Customer Satistified</h3>
+                       <h3>Referendum 5</h3>
                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                       <p><a href="#">Learn More</a></p>
                      </div>
                    </div>
 
@@ -169,17 +163,18 @@ class landingPage extends Component {
                        <span class="icon-wrap"><span class="text-primary icon-power"></span></span>
                      </div>
                      <div>
-                       <h3>Plug &amp; Play</h3>
+                       <h3>Referendum 6</h3>
                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quis molestiae vitae eligendi at.</p>
-                       <p><a href="#">Learn More</a></p>
                      </div>
                    </div>
                  </div>
-
+                 <div>
+                    <p style={{marginLeft: 1 + 'em'}}><a href="#" class="btn btn-primary">Learn More</a></p>
+                 </div>
                </div>
              </div>
            </div>
-
+{/* 
            <div class="feature-big" id="Candidates">
              <div class="container">
                <div class="row mb-5 site-section border-bottom">
@@ -258,14 +253,14 @@ class landingPage extends Component {
                </div>
 
              </div>
-           </div>
+           </div> */}
 
 
            <div class="site-section testimonial-wrap" id="testimonials-section">
              <div class="container">
                <div class="row mb-5">
                  <div class="col-12 text-center">
-                   <h2 class="section-title mb-3">Testimonials</h2>
+                   <h2 class="section-title mb-3">Featured Candidates</h2>
                  </div>
                </div>
              </div>
@@ -312,7 +307,6 @@ class landingPage extends Component {
 
 
                    </div>
-
                  </div>
 
                  <div>
@@ -329,7 +323,9 @@ class landingPage extends Component {
                    </div>
 
                  </div>
-
+               </div>
+               <div>
+                  <p style={{textAlign:"center"}}><a href="#" class="btn btn-primary">All Candidates</a></p>
                </div>
            </div>
 
