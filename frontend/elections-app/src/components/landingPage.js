@@ -1,14 +1,36 @@
 import React, { Component } from "react";
+import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
+import 'react-vertical-timeline-component/style.min.css';
 import "./landingPage.css";
 
 class landingPage extends Component {
-
+  state = {t1:false, t2:false, t3:false, t4:false, t5:false, t6:false, t7:false};
    goToLogin = () => {
       this.props.history.push('/login');
    }
 
+   test = () => {
+     let date = new Date();
+     let dateForm = (date.getMonth() + 1) + "-" + date.getDate() + "-" + date.getFullYear();
+     let lower = new Date("4-1-2020");
+     let upper = new Date("4-26-2020"); 
+
+     //Set timeline visibility
+     this.state.t1 = (dateForm == "1-15-2020");
+     this.state.t2 = (dateForm == "2-12-2020");
+     this.state.t3 = (date >= lower && date <= upper);
+     this.state.t4 = (dateForm == "4-3-2020" || dateForm == "4-10-2020");
+     lower = new Date("4-22-2020");
+     upper = new Date("4-26-2020");
+     this.state.t5 = (date >= lower && date <= upper);
+     this.state.t6 = (dateForm == "5-1-2020");
+     lower = new Date("5-6-2020");
+     upper = new Date("5-10-2020");
+     this.state.t7 = (date >= lower && date <= upper);
+   }
 
    render(){
+    this.test();
       return(
          <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
@@ -66,6 +88,7 @@ class landingPage extends Component {
              <div class="container">
                <div class="row align-items-center justify-content-center">
 
+
                  <div class="col-md-12" style={{position: 'relative'}} data-aos="fade-up">
 
                    <div class="row mb-4">
@@ -76,17 +99,148 @@ class landingPage extends Component {
                          <button class="btn btn-primary mr-2 mb-2" onClick={this.goToLogin}>Vote Now</button>
                        </div>
                      </div>
-
-
                    </div>
-
                  </div>
                </div>
              </div>
            </div>
 
+          {/*Election Information*/}
+          <div class="site-section bg-light" id="Information">
+            <div class="container">
+              <div class="row mb-5">
+                <div class="col-12 text-center">
+                  <h2 class="section-title mb-3">Test Info</h2>
+                </div>
+              </div>
+                 <div class="accordion" id="accordionExample">
+                  <div class="card">
+                    <div class="card-header" id="headingOne">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" onClick={() => this.setState({})}>
+                          Timeline
+                        </button>
+                      </h2>
+                    </div>
+
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                      <div class="card-body">
+                      <VerticalTimeline>
+                        <VerticalTimelineElement
+                          className="vertical-timeline-element--work"
+                          contentStyle={this.state.t1 ? { background: 'rgb(33, 150, 243)', color: '#000' } : {}}
+                          contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
+                          date="January 15, 2020"
+                          iconStyle={{ background: 'rgb(235,186,180)', color: '#fff' }}
+                          // icon={<WorkIcon />}
+                        >
+                          <h3 className="vertical-timeline-element-title">Referendums</h3>
+                          <p>
+                            Referendum/Initiative Applications due by 5pm.
+                          </p>
+                        </VerticalTimelineElement>
+                        <VerticalTimelineElement
+                          className="vertical-timeline-element--work"
+                          contentStyle={this.state.t2 ? { background: 'rgb(33, 150, 243)', color: '#000' } : {}}
+                          contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
+                          date="February 12, 2020"
+                          iconStyle={{ background: 'rgb(246,211,175)', color: '#fff' }}
+                          // icon={<WorkIcon />}
+                        >
+                          <h3 className="vertical-timeline-element-title">Candidate Apps</h3>
+                          <p>
+                            Candidate Paper Work Due ONLINE by 5pm.
+                          </p>
+                        </VerticalTimelineElement>
+                        <VerticalTimelineElement
+                          className="vertical-timeline-element--work"
+                          contentStyle={this.state.t3 ? { background: 'rgb(33, 150, 243)', color: '#000' } : {}}
+                          contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
+                          date="April 1-26, 2020"
+                          iconStyle={{ background: 'rgb(251,235,165)', color: '#fff' }}
+                          // icon={<WorkIcon />}
+                        >
+                          <h3 className="vertical-timeline-element-title">Campaigning</h3>
+                          <p>
+                            Campaigning Period
+                          </p>
+                        </VerticalTimelineElement>
+                        <VerticalTimelineElement
+                          className="vertical-timeline-element--work"
+                          contentStyle={this.state.t4 ? { background: 'rgb(33, 150, 243)', color: '#000' } : {}}
+                          contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
+                          date="April 3/10, 2020"
+                          iconStyle={{ background: 'rgb(181,239,206)', color: '#fff' }}
+                          // icon={<WorkIcon />}
+                        >
+                          <h3 className="vertical-timeline-element-title">Debates</h3>
+                          <p>
+                            Senator and Director Debates on the 3rd, Cabinet and Presidential Debates on 10th
+                          </p>
+                        </VerticalTimelineElement>
+                        <VerticalTimelineElement
+                          className="vertical-timeline-element--education"
+                          contentStyle={this.state.t5 ? { background: 'rgb(33, 150, 243)', color: '#000' } : {}}
+                          contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
+                          date="April 22-26,2020"
+                          iconStyle={{ background: 'rgb(183,220,244)', color: '#fff' }}
+                          // icon={<SchoolIcon />}
+                        >
+                          <h3 className="vertical-timeline-element-title">Voting Period</h3>
+                          <p>
+                            Voting Period for Elections. Hours and Location TBD.
+                          </p>
+                        </VerticalTimelineElement>
+                        <VerticalTimelineElement
+                          className="vertical-timeline-element--education"
+                          contentStyle={this.state.t6 ? { background: 'rgb(33, 150, 243)', color: '#000' } : {}}
+                          contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
+                          date="May 1, 2020"
+                          iconStyle={{ background: 'rgb(219,189,229)', color: '#fff' }}
+                          // icon={<SchoolIcon />}
+                        >
+                          <h3 className="vertical-timeline-element-title">Results</h3>
+                          <p>
+                            Election results will be announced. 
+                          </p>
+                        </VerticalTimelineElement>
+                        <VerticalTimelineElement
+                          className="vertical-timeline-element--education"
+                          contentStyle={this.state.t7 ? { background: 'rgb(33, 150, 243)', color: '#000' } : {}}
+                          contentArrowStyle={{ borderRight: '7px solid  rgb(33, 150, 243)' }}
+                          date="May 6-10, 2020"
+                          iconStyle={{ background: 'rgb(181,189,196)', color: '#fff' }}
+                          // icon={<SchoolIcon />}
+                        >
+                          <h3 className="vertical-timeline-element-title">Special Elections</h3>
+                          <p>
+                            Special Elections (Run off/Appointments) will be conducted.
+                          </p>
+                        </VerticalTimelineElement>
+                      </VerticalTimeline>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-header" id="headingTwo">
+                      <h2 class="mb-0">
+                        <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                          Real-Time Vote Counting
+                        </button>
+                      </h2>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                      <div class="card-body">
+                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                      </div>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+
           {/*Referendums*/}
-           <div class="site-section bg-light" id="Referendums">
+           <div class="site-section" id="Referendums">
              <div class="container">
                <div class="row mb-5">
                  <div class="col-12 text-center">
@@ -257,7 +411,7 @@ class landingPage extends Component {
            </div> */}
 
 
-           <div class="site-section testimonial-wrap" id="testimonials-section">
+           <div class="site-section testimonial-wrap bg-light" id="testimonials-section">
              <div class="container">
                <div class="row mb-5">
                  <div class="col-12 text-center">
