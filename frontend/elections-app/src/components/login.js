@@ -7,6 +7,8 @@ import {
 } from 'semantic-ui-react';
 import firebase, { auth, provider } from './firebase.js';
 
+const emailRegex = /^[a-z]{3,5}[0-9]{3}@(ucr)(.edu)$/;
+
 class login extends Component {
    constructor(){
       super();
@@ -22,19 +24,26 @@ class login extends Component {
       document.body.style = 'background: #0A162E';
       firebase.auth().onAuthStateChanged((user) => {
             if (user && user.emailVerified === true) {
-                window.location = "dashboard"
-            } 
+                //window.location = "dashboard"
+            }
         })
+
    }
 
-   login = () => {
-      auth.signInWithPopup(provider)
+   login = async () => {
+
+      await auth.signInWithPopup(provider)
     .then((result) => {
       const user = result.user;
       this.setState({ user });
     });
+
+    if(this.state.user.email.match(emailRegex)){
+      this.setState({isAuthenticated: true});
+      this.props.history.push('dashboard');
    }
-   
+   }
+
    logout = () => {
       auth.signOut()
     .then(() => {
@@ -65,7 +74,7 @@ class login extends Component {
 
    render(){
       //      /^[a-z]{3,5}[0-9]{3}@(ucr)(.edu)$/         regex for school emails
-      const emailRegex = /^[a-z]{3,5}[0-9]{3}@(ucr)(.edu)$/;
+
       //console.log(this.state);
 
       if(this.state.user === null){
@@ -136,12 +145,11 @@ class login extends Component {
          </div>
          </div>
       );
-   }else if(email.match(emailRegex)){
-      return(
-         <h1 style={{color: "white"}}> WELCOME TO THE DASHBOARD </h1>
-      );
    }
    }
+   return(
+      <h1> Render this </h1>
+   );
    }
 };
 

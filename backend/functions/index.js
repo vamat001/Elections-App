@@ -1,17 +1,41 @@
 const functions = require('firebase-functions');
 const express = require('express');
+const admin = require('firebase-admin');
+const firebase = require('firebase');
+const cors = require('cors');
+const config = require('./config');
+const serviceAccount = require('./elections_service_account.json');
 
+admin.initializeApp({
+   credential: admin.credential.cert(serviceAccount)
+});
 const app = express();
+app.use(cors());
+const db = admin.firestore();
+firebase.initializeApp(config);
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
 
-app.get('/', (req, res) => {
-    res.send("Hello world");
-});
+app.get('/getSecretary', (req, res) => {
+   admin.firestore().collection('Secretary').get().then((data) => {
+      let users = [];
+      data.forEach((doc) => {
+         users.push(doc.data());
+      });
+      return res.json(users);
+   })
+   .catch((err) => console.error(err));
+})
+app.get('/getSenators', (req, res) => {
+   admin.firestore().collection('Senators').get().then((data) => {
+      let users = [];
+      data.forEach((doc) => {
+         users.push(doc.data());
+      });
+      return res.json(users);
+   })
+   .catch((err) => console.error(err));
+})
 
-exports.helloWorld = functions.https.onRequest((request, response) => {
- response.send("Hello from Firebase!");
-});
+
 
 exports.api = functions.https.onRequest(app);
