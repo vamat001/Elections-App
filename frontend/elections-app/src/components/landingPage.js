@@ -40,15 +40,15 @@ class landingPage extends Component {
                  </div>
 
                  <div class="col-12 col-md-10 main-menu">
-                   <nav class="site-navigation position-relative text-right" role="navigation">
+                   <nav class="site-navigation text-right" role="navigation">
 
-                     <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                     <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block" style={{paddingRight: "4%"}}>
                        <li><a href="#Home" class="nav-link">Home</a></li>
-                       <li><a href="#Referendums" class="nav-link">Referendums</a></li>
-                       <li><a href="#testimonials-section" class="nav-link">Candidates</a></li>
                        <li><a href="#" class="nav-link">Positions</a></li>
+                       <li><a href="#testimonials-section" class="nav-link">Candidates</a></li>
+                       <li><a href="#Referendums" class="nav-link">Referendums</a></li>
+                       <li><a href="#" class="nav-link">Forms</a></li>
                        <li><a href="#" class="nav-link">Vote</a></li>
-                       <li><a href="#Questions" class="nav-link">Contact Us</a></li>
                      </ul>
                    </nav>
                  </div>
@@ -67,7 +67,6 @@ class landingPage extends Component {
                <div class="row align-items-center justify-content-center">
 
                  <div class="col-md-12" style={{position: 'relative'}} data-aos="fade-up">
-
                    <div class="row mb-4">
                      <div class="col-lg-4 mr-auto">
                        <h1>Voting is Open!</h1>
@@ -75,8 +74,10 @@ class landingPage extends Component {
                        <div>
                          <button class="btn btn-primary mr-2 mb-2" onClick={this.goToLogin}>Vote Now</button>
                        </div>
+                     </div> 
+                     <div class="col-lg-6 mr-auto">
+                       <img src="images/ucr.jpg" class="img-fluid" />
                      </div>
-
 
                    </div>
 
