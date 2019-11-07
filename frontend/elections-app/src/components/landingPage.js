@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';
 import "./landingPage.css";
+import { Link } from "react-router-dom";
 
 class landingPage extends Component {
   state = {t1:false, t2:false, t3:false, t4:false, t5:false, t6:false, t7:false};
@@ -65,12 +66,12 @@ class landingPage extends Component {
                    <nav class="site-navigation text-right" role="navigation">
 
                      <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block" style={{paddingRight: "4%"}}>
-                       <li><a href="#Home" class="nav-link">Home</a></li>
-                       <li><a href="#" class="nav-link">Positions</a></li>
-                       <li><a href="#testimonials-section" class="nav-link">Candidates</a></li>
-                       <li><a href="#Referendums" class="nav-link">Referendums</a></li>
-                       <li><a href="#" class="nav-link">Forms</a></li>
-                       <li><a href="#" class="nav-link">Vote</a></li>
+                       <li><Link to="/" class="nav-link">Home</Link></li>
+                       <li><Link to="/positions" class="nav-link">Positions</Link></li>
+                       <li><Link to="/candidates" class="nav-link">Candidates</Link></li>
+                       <li><Link to="/referendums" class="nav-link">Referendums</Link></li>
+                       <li><Link to="/forms" class="nav-link">Forms</Link></li>
+                       <li><a href="#" class="nav-link" onClick={this.goToLogin}>Vote</a></li>
                      </ul>
                    </nav>
                  </div>

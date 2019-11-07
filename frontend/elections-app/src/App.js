@@ -1,17 +1,26 @@
 import React, { Component } from "react";
-import LandingPage from "./components/landingPage.js";
-import Login from "./components/login.js";
+import landingPage from "./components/landingPage.js";
+import forms from "./components/forms.js";
+import referendums from "./components/referendums.js";
+import positions from "./components/positions.js";
+import candidates from "./components/candidates.js";
+import login from "./components/login.js";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-//import "bootstrap/dist/css/bootstrap.min.css";
 
 class App extends Component {
   render() {
     return (
-      <Router>
-        <Route exact path="/" component={LandingPage} />
-        <Route exact path="/login" component={Login} />
-      </Router>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={landingPage} />
+          <Route exact path="/login" component={login} />
+          <Route exact path="/forms" component={forms} />
+          <Route exact path="/referendums" component={referendums} />
+          <Route exact path="/candidates" component={candidates} />
+          <Route exact path="/positions" component={positions} />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }

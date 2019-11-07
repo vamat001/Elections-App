@@ -17,7 +17,7 @@ class login extends Component {
     document.body.style = "background: #0A162E";
     firebase.auth().onAuthStateChanged(user => {
       if (user && user.emailVerified === true) {
-        //window.location = "dashboard"
+        window.location = "dashboard";
       }
     });
   }
