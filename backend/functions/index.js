@@ -36,6 +36,17 @@ app.get('/getSenators', (req, res) => {
    .catch((err) => console.error(err));
 })
 
+app.get("/getAllPositions", (req, res) => {
+   admin.firestore().collection('AllPositions').get().then((data) => {
+      let users = [];
+      data.forEach((doc) => {
+         users.push(doc.data());
+      });
+      return res.json(users);
+   })
+   .catch((err) => console.error(err));
+})
+
 
 
 exports.api = functions.https.onRequest(app);

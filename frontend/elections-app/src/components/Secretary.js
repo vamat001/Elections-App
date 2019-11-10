@@ -24,6 +24,7 @@ class Secretary extends Component {
    }
 
    componentDidMount(){
+      //console.log("secretary props", this.props.secretary[0].ID);
       //this.getSecretary();
    }
 
