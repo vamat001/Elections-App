@@ -97,39 +97,44 @@ class dashboard extends Component {
    getFinalListOfCandidates = () => {
       let finalCandidatesList = {};
       let filteredPresident = this.state.presidents.filter(e => e.ID === this.state.president);
-      let filteredSecretay = this.state.secretary.filter(e => e.ID === this.state.vp);
+      let filteredSecretary = this.state.secretary.filter(e => e.ID === this.state.vp);
 
       if(filteredPresident.length > 0){
-         finalCandidatesList[this.state.president] = filteredPresident;
+         //finalCandidatesList[this.state.president] = filteredPresident;
+         finalCandidatesList["President"] = filteredPresident;
       }
 
-      if(filteredSecretay.length > 0){
-         finalCandidatesList[this.state.vp] = filteredSecretay;
+      if(filteredSecretary.length > 0){
+         //finalCandidatesList[this.state.vp] = filteredSecretary;
+         finalCandidatesList["VP"] = filteredSecretary;
       }
 
 
       //finalCandidatesList.push(this.state.president);
       //finalCandidatesList.push(this.state.vp);
-
       if(this.state.senatorsSelected !== null){
          let senators = this.state.senators;
          const obj = this.state.senatorsSelected;
-         //console.log("inside senators state ",this.state)
+         let emptyArr = [];
          Object.entries(obj).forEach(function([key, value]) {
             if(value === true){
                // finalCandidatesList.push(key);
-               finalCandidatesList[key] = senators.filter(e => e.ID === key);
+               emptyArr.push(senators.filter(e => e.ID === key))
+               //finalCandidatesList[key] = senators.filter(e => e.ID === key);
             }
          });
+         finalCandidatesList['mySenators'] = emptyArr;
    }
-      this.setState({finalCandidatesList});
+      this.setState({finalCandidatesList}, () => console.log("State after everything", this.state));
    }
 
    componentDidMount(){
       document.body.style = 'background: #f2f3f4';
       //this.getSecretary();
       //this.getSenators();
+
       this.getAllPositions();
+
       //const OPTIONS = this.state.secretary;
 
     //   this.setState({checkboxes: OPTIONS.reduce(
@@ -159,6 +164,15 @@ prevStep = () => {
       this.setState({[key]: data[key]});
    }
 }
+
+storeSpecialData = async(data) => {
+   for (let key in data) {
+      await this.setState({[key]: data[key]});
+   }
+   this.getFinalListOfCandidates();
+}
+
+
 storeSenatorData = (data) => {
    // for (let key in data) {
    //    this.setState({[key]: data[key]});
@@ -170,9 +184,10 @@ storeSenatorData = (data) => {
    render(){
       console.log(this.state);
 
-      if(this.state.secretary.length === 0){
-         return <h1> Loading </h1>;
-      }
+      // if(this.state.secretary.length === 0){
+      //    return <h1> Loading </h1>;
+      // }
+
       // <Secretary
       // currentStep={this.state.currentStep}
       // secretary={this.state.secretary}
@@ -185,6 +200,10 @@ storeSenatorData = (data) => {
       // ref={instance => { this.child2 = instance; }}
       // callbackFromParent={this.storeSenatorData}
       // candidateArr={this.state.senatorCandidates}/>
+//    -------------------------------------------
+
+
+
       return(
 
          <div>
@@ -211,7 +230,7 @@ storeSenatorData = (data) => {
             step={3}
             currentStep={this.state.currentStep}
             ref={instance => { this.child3 = instance; }}
-            callbackFromParent={this.storeSecretaryData}
+            callbackFromParent={this.storeSpecialData}
             candidateArr={this.state.senatorCandidates}/>
 
             <SubmitVotes
@@ -244,14 +263,14 @@ storeSenatorData = (data) => {
             this.state.currentStep === 3 ?
             <div className="row" style={{paddingTop: "10%", paddingLeft: "50%"}}>
             <button onClick={() => {this.prevStep(); this.child3.sendDataToParent()}}>Prev</button>
-            <button onClick={() => {this.child3.sendDataToParent(); this.getFinalListOfCandidates();this.nextStep()}}>Next</button>
+            <button onClick={() => {this.child3.sendDataToParent(); this.nextStep()}}>Next</button>
             </div>
             : null
          }
          {
             this.state.currentStep === 4 ?
             <div className="row" style={{paddingTop: "10%", paddingLeft: "50%"}}>
-            <button onClick={() => {this.getFinalListOfCandidates(); this.nextStep()}}>Finish</button>
+            <button onClick={() => {this.nextStep()}}>Finish</button>
             </div>
             : null
          }
