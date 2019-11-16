@@ -71,15 +71,21 @@ class SubmitVotes extends Component {
 
          <div className="container-fluid">
             <div className="row" style={{ width: "100%"}}>
-               <div className="col">President: {presName}</div>
+               <div className="col">
+                  <h1 style={{color: "orange"}}>President: {presName}</h1>
+               </div>
             </div>
             <div style={{paddingTop: 0.7, paddingBottom: 0.7, width: "100%", backgroundColor:"black"}}></div>
             <div className="row" style={{width: "100%"}}>
-               <div className="col">Vice President: {vpName}</div>
+               <div className="col">
+                  <h1>Vice President: {vpName} </h1>
+               </div>
             </div>
             <div style={{paddingTop: 0.7, paddingBottom: 0.7, width: "100%", backgroundColor:"black"}}></div>
             <div className="row" style={{ width: "100%"}}>
-               <div className="col">Secretary: {senatorNames}</div>
+               <div className="col">
+               <h1>Secretary: {senatorNames} </h1>
+               </div>
             </div>
 
 

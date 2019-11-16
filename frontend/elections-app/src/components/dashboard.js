@@ -7,6 +7,8 @@ import Senators from "./Senators";
 import Bubble from "./Bubble";
 import Checkbox from "./Checkbox";
 import SubmitVotes from "./submitVotes";
+import rightArrowIcon from "./rightArrowIcon.png";
+import leftArrowIcon from "./leftArrowIcon.png";
 
 const API_BASE = "http://localhost:5000/elections-app-4e4df/us-central1/api";
 
@@ -129,7 +131,8 @@ class dashboard extends Component {
    }
 
    componentDidMount(){
-      document.body.style = 'background: #f2f3f4';
+      //document.body.style = 'background: #f2f3f4';
+      document.body.style = 'background: #2d6cc0';
       //this.getSecretary();
       //this.getSenators();
 
@@ -245,25 +248,47 @@ storeSenatorData = (data) => {
 
          {
             this.state.currentStep === 1 ?
-            <div className="row" style={{paddingTop: "10%", paddingLeft: "50%"}}>
-            <button onClick={() => {this.prevStep(); this.child1.sendDataToParent()}}>Prev</button>
-            <button onClick={() => {this.nextStep(); this.child1.sendDataToParent()}}>Next</button>
+            <div className="row justify-content-between" style={{paddingTop: "0%", paddingLeft: "0%"}}>
+               <div className="col-md-3 offset-md-3">
+                  <button onClick={() => {this.prevStep(); this.child1.sendDataToParent()}}>
+                     <img src={leftArrowIcon} style={{width: "30%", marginRight: 10}}/>
+                     Back
+                  </button>
+               </div>
+               <div className="col-4">
+                  <button onClick={() => {this.nextStep(); this.child1.sendDataToParent()}}>Next
+                     <img src={rightArrowIcon} style={{width: "30%", marginLeft: 10}}/>
+                  </button>
+               </div>
+
+
             </div>
             : null
          }
          {
             this.state.currentStep === 2 ?
-            <div className="row" style={{paddingTop: "10%", paddingLeft: "50%"}}>
-            <button onClick={() => {this.prevStep(); this.child2.sendDataToParent()}}>Prev</button>
-            <button onClick={() => {this.nextStep(); this.child2.sendDataToParent()}}>Next</button>
+            <div className="row justify-content-between" style={{paddingTop: "0%", paddingLeft: "0%"}}>
+            <div className="col-md-3 col-sm-2 offset-md-3">
+               <button onClick={() => {this.prevStep(); this.child2.sendDataToParent()}}>Prev</button>
+            </div>
+            <div className="col-4 col-sm-4">
+               <button onClick={() => {this.nextStep(); this.child2.sendDataToParent()}}>Next
+
+               </button>
+            </div>
             </div>
             : null
          }
          {
             this.state.currentStep === 3 ?
-            <div className="row" style={{paddingTop: "10%", paddingLeft: "50%"}}>
-            <button onClick={() => {this.prevStep(); this.child3.sendDataToParent()}}>Prev</button>
-            <button onClick={() => {this.child3.sendDataToParent(); this.nextStep()}}>Next</button>
+            <div className="row" style={{paddingTop: "0%", paddingLeft: "0%"}}>
+            <div className="col-md-3 offset-md-3">
+               <button onClick={() => {this.prevStep(); this.child3.sendDataToParent()}}>Prev</button>
+            </div>
+            <div className="col-4">
+               <button onClick={() => {this.child3.sendDataToParent(); this.nextStep()}}>Next</button>
+            </div>
+
             </div>
             : null
          }

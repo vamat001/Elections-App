@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Checkbox.css";
 import axios from "axios";
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 const API_BASE = "http://localhost:5000/elections-app-4e4df/us-central1/api";
 
@@ -52,12 +53,21 @@ class Checkbox extends Component {
      if(this.props.currentStep !== this.props.step){
        return null;
      }
+     let heading = "";
      // if(this.props.currentStep !== 2){
      //   return null;
      // }
      let secCheckBoxesList = null;
      //console.log(this.state);
      if(this.props.position.length !== 0 && this.state.checkboxes !== null){
+
+        let pos = this.props.position[0].ID;
+        pos = pos.replace(/[0-9]/g, '');
+        if(pos === "Senator"){
+           heading = "Senator";
+        }
+
+
         secCheckBoxesList = this.props.position.map((e) => (
            <li key={e.ID}>
               <input
@@ -74,8 +84,18 @@ class Checkbox extends Component {
      }
      return(
         <div className="container">
+           <div className="row">
+              <h1 style={{color: "white"}}>{heading}</h1>
+           </div>
            <ul>
-           {secCheckBoxesList}
+              <ReactCSSTransitionGroup
+              transitionName="example"
+             transitionAppear={true}
+             transitionAppearTimeout={500}
+             transitionEnter={false}
+             transitionLeave={false}>
+               {secCheckBoxesList}
+             </ReactCSSTransitionGroup>
            </ul>
         </div>
      );
