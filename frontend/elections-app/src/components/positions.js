@@ -41,7 +41,8 @@ class positions extends Component {
                 const cardLists = this.state.candidatesArray.map(can =>{
                     if(can.runningFor === pos.id && !can.gradStudent){
                         return  <CardDeck >
-                        <Card border="dark" bg="light" style={{ width: '18rem' }}>
+                        <div className='mt-1'>
+                        <Card border="dark" bg="light" >
                                   <Card.Body>
                                     <Card.Title>{can.name}</Card.Title>
                                     <Card.Subtitle className="mb-2 text-muted">{can.major}</Card.Subtitle>
@@ -50,6 +51,7 @@ class positions extends Component {
                                     </Card.Text>
                                   </Card.Body>
                                 </Card>
+                        </div>
                                 </CardDeck>;
                     }
                 });
