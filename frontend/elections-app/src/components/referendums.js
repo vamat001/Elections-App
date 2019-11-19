@@ -1,7 +1,19 @@
 import React, { Component } from "react";
 import NavHeader from "./NavHeader";
+import axios from "axios";
+
+const API_BASE = "http://localhost:5000/elections-app-4e4df/us-central1/api";
 
 class referendums extends Component {
+  constructor() {
+    super();
+    this.state = { Referendums: [] };
+  }
+  getReferendums = async () => {
+    await axios.get(API_BASE + "/getSecretary").then(res => {
+      this.setState({ secretary: res.data });
+    });
+  };
   render() {
     return (
       <body
