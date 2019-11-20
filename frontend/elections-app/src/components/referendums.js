@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import NavHeader from "./NavHeader";
 import firebase from "./firebase.js";
 
-const API_BASE = "http://localhost:5000/elections-app-4e4df/us-central1/api";
-
 class referendums extends Component {
   constructor() {
     super();
@@ -31,14 +29,11 @@ class referendums extends Component {
           return (
             <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up">
               <div class="unit-4 d-block">
-                <div class="unit-4-icon mb-3">
-                  <span class="icon-wrap">
-                    <span class="text-primary icon-autorenew"></span>
-                  </span>
-                </div>
                 <div>
-                  <h3>Referendum</h3>
+                  <h3>Description</h3>
                   <p>{ref.description}</p>
+                  <h3>Implications</h3>
+                  <p>{ref.implications}</p>
                 </div>
               </div>
             </div>
@@ -179,13 +174,6 @@ class referendums extends Component {
                     </div>
                   </div>
     </div> */}
-                    <div>
-                      <p style={{ marginLeft: 1 + "em" }}>
-                        <a href="#" class="btn btn-primary">
-                          More Info
-                        </a>
-                      </p>
-                    </div>
                   </div>
                 </div>
               </div>
