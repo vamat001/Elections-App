@@ -9,7 +9,8 @@ import Checkbox from "./Checkbox";
 import SubmitVotes from "./submitVotes";
 import rightArrowIcon from "./rightArrowIcon.png";
 import leftArrowIcon from "./leftArrowIcon.png";
-
+import checkmarkIcon from "./checkmarkIcon.png";
+import firebase from "firebase";
 const API_BASE = "http://localhost:5000/elections-app-4e4df/us-central1/api";
 
 class dashboard extends Component {
@@ -28,7 +29,9 @@ class dashboard extends Component {
          president: '',
          vp: '',
          senatorsSelected: null,
-         finalCandidatesList: {}
+         finalCandidatesList: {},
+         selectedCandidateIDS: [],
+
 
       };
    }
@@ -97,18 +100,22 @@ class dashboard extends Component {
    }
 
    getFinalListOfCandidates = () => {
+      let selectedCandidateIDS = [];
       let finalCandidatesList = {};
+
       let filteredPresident = this.state.presidents.filter(e => e.ID === this.state.president);
       let filteredSecretary = this.state.secretary.filter(e => e.ID === this.state.vp);
 
       if(filteredPresident.length > 0){
          //finalCandidatesList[this.state.president] = filteredPresident;
          finalCandidatesList["President"] = filteredPresident;
+         selectedCandidateIDS.push(filteredPresident[0]['ID']);
       }
 
       if(filteredSecretary.length > 0){
          //finalCandidatesList[this.state.vp] = filteredSecretary;
          finalCandidatesList["VP"] = filteredSecretary;
+         selectedCandidateIDS.push(filteredSecretary[0]['ID']);
       }
 
 
@@ -121,13 +128,39 @@ class dashboard extends Component {
          Object.entries(obj).forEach(function([key, value]) {
             if(value === true){
                // finalCandidatesList.push(key);
-               emptyArr.push(senators.filter(e => e.ID === key))
+               emptyArr.push(senators.filter(e => e.ID === key));
+               selectedCandidateIDS.push(key);
                //finalCandidatesList[key] = senators.filter(e => e.ID === key);
             }
          });
          finalCandidatesList['mySenators'] = emptyArr;
    }
-      this.setState({finalCandidatesList}, () => console.log("State after everything", this.state));
+      this.setState({finalCandidatesList, selectedCandidateIDS}, () => console.log("State after everything", this.state));
+   }
+
+   submitAndUpdateVotes = async() => {
+      if(this.state.selectedCandidateIDS.length > 0){
+         const db = firebase.firestore();
+         for(const candidate of this.state.selectedCandidateIDS){
+            let ref = db.collection("testVotes").doc(candidate);
+            await db.runTransaction(function(transaction){
+                  return transaction.get(ref).then(async function(refDoc){
+                     if (!refDoc.exists){
+                        console.log("Doc doesn't exist");
+                     }
+                     var newVoteCount = refDoc.data().Votes + 1;
+                     transaction.update(ref, { Votes: newVoteCount });
+               });
+            })
+            .then(function() {
+                console.log("Transaction successfully committed!");
+            }).catch(function(error) {
+                console.log("Transaction failed: ", error);
+            });
+         }
+      }
+      console.log("Voting Complete!");
+
    }
 
    componentDidMount(){
@@ -162,7 +195,7 @@ prevStep = () => {
    }
 }
 
-   storeSecretaryData = (data) => {
+   storeData = (data) => {
    for (let key in data) {
       this.setState({[key]: data[key]});
    }
@@ -219,14 +252,14 @@ storeSenatorData = (data) => {
             step={1}
             position={this.state.presidents}
             ref={instance => { this.child1 = instance; }}
-            callbackFromParent={this.storeSecretaryData} />
+            callbackFromParent={this.storeData} />
 
             <Bubble
             currentStep={this.state.currentStep}
             step={2}
             position={this.state.secretary}
             ref={instance => { this.child2 = instance; }}
-            callbackFromParent={this.storeSecretaryData} />
+            callbackFromParent={this.storeData} />
 
             <Checkbox
             position={this.state.senators}
@@ -247,15 +280,15 @@ storeSenatorData = (data) => {
          </div>
 
          {
-            this.state.currentStep === 1 ?
-            <div className="row justify-content-between" style={{paddingTop: "0%", paddingLeft: "0%"}}>
-               <div className="col-md-3 offset-md-3">
+            this.state.currentStep === 1 && this.state.presidents.length > 0 ?
+            <div className="row" style={{paddingTop: "0%", paddingLeft: "0%"}}>
+               <div className="col-md-2 offset-md-1 col-3">
                   <button onClick={() => {this.prevStep(); this.child1.sendDataToParent()}}>
                      <img src={leftArrowIcon} style={{width: "30%", marginRight: 10}}/>
                      Back
                   </button>
                </div>
-               <div className="col-4">
+               <div className="col-md-2 offset-md-3 col-3 offset-2">
                   <button onClick={() => {this.nextStep(); this.child1.sendDataToParent()}}>Next
                      <img src={rightArrowIcon} style={{width: "30%", marginLeft: 10}}/>
                   </button>
@@ -267,13 +300,16 @@ storeSenatorData = (data) => {
          }
          {
             this.state.currentStep === 2 ?
-            <div className="row justify-content-between" style={{paddingTop: "0%", paddingLeft: "0%"}}>
-            <div className="col-md-3 col-sm-2 offset-md-3">
-               <button onClick={() => {this.prevStep(); this.child2.sendDataToParent()}}>Prev</button>
+            <div className="row" style={{paddingTop: "0%", paddingLeft: "0%"}}>
+            <div className="col-md-2 offset-md-1 col-3">
+               <button onClick={() => {this.prevStep(); this.child2.sendDataToParent()}}>
+                  <img src={leftArrowIcon} style={{width: "30%", marginRight: 10}}/>
+                  Back
+               </button>
             </div>
-            <div className="col-4 col-sm-4">
+            <div className="col-md-2 offset-md-3 col-3 offset-2">
                <button onClick={() => {this.nextStep(); this.child2.sendDataToParent()}}>Next
-
+                  <img src={rightArrowIcon} style={{width: "30%", marginLeft: 10}}/>
                </button>
             </div>
             </div>
@@ -282,11 +318,16 @@ storeSenatorData = (data) => {
          {
             this.state.currentStep === 3 ?
             <div className="row" style={{paddingTop: "0%", paddingLeft: "0%"}}>
-            <div className="col-md-3 offset-md-3">
-               <button onClick={() => {this.prevStep(); this.child3.sendDataToParent()}}>Prev</button>
+            <div className="col-md-2 offset-md-1 col-3">
+               <button onClick={() => {this.prevStep(); this.child3.sendDataToParent()}}>
+                  <img src={leftArrowIcon} style={{width: "30%", marginRight: 10}}/>
+                  Back
+               </button>
             </div>
-            <div className="col-4">
-               <button onClick={() => {this.child3.sendDataToParent(); this.nextStep()}}>Next</button>
+            <div className="col-md-2 offset-md-3 col-3 offset-2">
+               <button onClick={() => {this.child3.sendDataToParent(); this.nextStep()}}>Next
+                  <img src={rightArrowIcon} style={{width: "30%", marginLeft: 10}}/>
+               </button>
             </div>
 
             </div>
@@ -294,9 +335,20 @@ storeSenatorData = (data) => {
          }
          {
             this.state.currentStep === 4 ?
-            <div className="row" style={{paddingTop: "10%", paddingLeft: "50%"}}>
-            <button onClick={() => {this.nextStep()}}>Finish</button>
+            <div className="row" style={{paddingTop: "0%", paddingLeft: "0%"}}>
+               <div className="col-md-2 offset-md-1 col-3">
+                  <button onClick={() => {this.prevStep()}}>
+                     <img src={leftArrowIcon} style={{width: "30%", marginRight: 10}}/>
+                     Back
+                  </button>
+               </div>
+               <div className="col-md-2 offset-md-3 col-3 offset-2">
+                  <button onClick={() => {this.submitAndUpdateVotes();this.nextStep()}}>Submit
+                     <img src={checkmarkIcon} style={{width: "25%", marginLeft: 10}}/>
+                  </button>
+               </div>
             </div>
+
             : null
          }
 

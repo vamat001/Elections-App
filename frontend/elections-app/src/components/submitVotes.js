@@ -21,6 +21,7 @@ class SubmitVotes extends Component {
       let presName = null;
       let vpName = null;
       let senatorNames = [];
+      let senatorsList = null;
       let finalList = null;
       let pres = this.props.finalList['President'];
 
@@ -40,9 +41,12 @@ class SubmitVotes extends Component {
          }
          try{
             let senators = this.props.finalList['mySenators'];
-            senators.map(candidate =>{
-              senatorNames.push(candidate[0]['Name']);
-           });
+            senatorsList = senators.map(candidate =>
+               <li key={candidate[0]['ID']}>{candidate[0]['Name']}</li>
+            );
+           //  senators.map(candidate =>{
+           //    senatorNames.push(candidate[0]['Name']);
+           // });
            //this.setState({senatorNames});
          }catch(error){
             console.log(error);
@@ -67,30 +71,48 @@ class SubmitVotes extends Component {
 //    </div>
 //    : null
 // }
+
+// <div className="col">
+//    <h1 style={{color: "orange"}}>President: {presName}</h1>
+// </div>
+
+//<div style={{paddingTop: 0.7, paddingBottom: 0.7, width: "100%", backgroundColor:"black"}}></div>
       return(
 
          <div className="container-fluid">
+
+         <div className="row" style={{width: "100%"}}>
+            <h1 style={{color: "white"}}>Selected Candidates</h1>
+         </div>
+
             <div className="row" style={{ width: "100%"}}>
-               <div className="col">
-                  <h1 style={{color: "orange"}}>President: {presName}</h1>
+               <div style={{ width: "100%", paddingBottom: 0, backgroundColor: "orange", borderRadius: 10, border:"solid 3px white"}}>
+                  <div style={{paddingLeft: "5%", paddingBottom: "5%", paddingTop: "5%"}}>
+                     <h1 style={{color: "white"}}>President</h1>
+                     <h3 style={{color: "white"}}>{presName}</h3>
+                  </div>
                </div>
             </div>
-            <div style={{paddingTop: 0.7, paddingBottom: 0.7, width: "100%", backgroundColor:"black"}}></div>
-            <div className="row" style={{width: "100%"}}>
-               <div className="col">
-                  <h1>Vice President: {vpName} </h1>
-               </div>
-            </div>
-            <div style={{paddingTop: 0.7, paddingBottom: 0.7, width: "100%", backgroundColor:"black"}}></div>
+
+
             <div className="row" style={{ width: "100%"}}>
-               <div className="col">
-               <h1>Secretary: {senatorNames} </h1>
+               <div style={{ width: "100%", paddingBottom: 0, backgroundColor: "orange", borderRadius: 10, border:"solid 3px white"}}>
+                  <div style={{paddingLeft: "5%", paddingBottom: "5%", paddingTop: "5%"}}>
+                     <h1 style={{color: "white"}}>Vice President</h1>
+                     <h3 style={{color: "white"}}>{vpName}</h3>
+                  </div>
                </div>
             </div>
 
 
-
-
+            <div className="row" style={{ width: "100%"}}>
+               <div style={{ width: "100%", paddingBottom: 0, backgroundColor: "orange", borderRadius: 10, border:"solid 3px white"}}>
+                  <div style={{paddingLeft: "5%", paddingBottom: "5%", paddingTop: "5%"}}>
+                     <h1 style={{color: "white"}}>Senators</h1>
+                     <h3 style={{color: "white"}}>{senatorsList}</h3>
+                  </div>
+               </div>
+            </div>
 
          </div>
 
