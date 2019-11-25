@@ -19,7 +19,7 @@ class dashboard extends Component {
       this.state = {
          currentStep: 1,
          step: 1,
-         secretary: [],
+         vicePresidents: [],
          senators: [],
          presidents: [],
          secretarySelected: '',
@@ -64,21 +64,21 @@ class dashboard extends Component {
          this.setState({allPositions: res.data});
       })
       let senators = [];
-      let secretary = [];
+      let vicePresidents = [];
       let presidents = [];
 
       this.state.allPositions.filter((position) => {
-         let pos = position.ID;
-         pos = pos.replace(/[0-9]/g, '');
+         let pos = position.runningFor;
+         //pos = pos.replace(/[0-9]/g, '');
          if(pos === "Senator"){
             senators.push(position);
-         }else if(pos === "VP"){
-            secretary.push(position);
+         }else if(pos === "VicePresident"){
+            vicePresidents.push(position);
          }else if(pos == "President"){
             presidents.push(position);
          }
       })
-      this.setState({senators, secretary, presidents});
+      this.setState({senators, vicePresidents, presidents});
       let senatorCandidates = [];
      this.state.senators.map(candidate =>{
         senatorCandidates.push(candidate.ID);
@@ -104,7 +104,7 @@ class dashboard extends Component {
       let finalCandidatesList = {};
 
       let filteredPresident = this.state.presidents.filter(e => e.ID === this.state.president);
-      let filteredSecretary = this.state.secretary.filter(e => e.ID === this.state.vp);
+      let filteredVicePresident = this.state.vicePresidents.filter(e => e.ID === this.state.vp);
 
       if(filteredPresident.length > 0){
          //finalCandidatesList[this.state.president] = filteredPresident;
@@ -112,10 +112,10 @@ class dashboard extends Component {
          selectedCandidateIDS.push(filteredPresident[0]['ID']);
       }
 
-      if(filteredSecretary.length > 0){
+      if(filteredVicePresident.length > 0){
          //finalCandidatesList[this.state.vp] = filteredSecretary;
-         finalCandidatesList["VP"] = filteredSecretary;
-         selectedCandidateIDS.push(filteredSecretary[0]['ID']);
+         finalCandidatesList["VP"] = filteredVicePresident;
+         selectedCandidateIDS.push(filteredVicePresident[0]['ID']);
       }
 
 
@@ -142,14 +142,14 @@ class dashboard extends Component {
       if(this.state.selectedCandidateIDS.length > 0){
          const db = firebase.firestore();
          for(const candidate of this.state.selectedCandidateIDS){
-            let ref = db.collection("testVotes").doc(candidate);
+            let ref = db.collection("undergradVotes").doc(candidate);
             await db.runTransaction(function(transaction){
                   return transaction.get(ref).then(async function(refDoc){
                      if (!refDoc.exists){
                         console.log("Doc doesn't exist");
                      }
-                     var newVoteCount = refDoc.data().Votes + 1;
-                     transaction.update(ref, { Votes: newVoteCount });
+                     var newVoteCount = refDoc.data().voteCount + 1;
+                     transaction.update(ref, { voteCount: newVoteCount });
                });
             })
             .then(function() {
@@ -244,7 +244,7 @@ storeSenatorData = (data) => {
 
          <div>
 
-            <div className="row">
+            <div className="row justify-content-md-center" style={{paddingTop: "5%", paddingBottom: "5%"}}>
             <form>
 
             <Bubble
@@ -257,7 +257,7 @@ storeSenatorData = (data) => {
             <Bubble
             currentStep={this.state.currentStep}
             step={2}
-            position={this.state.secretary}
+            position={this.state.vicePresidents}
             ref={instance => { this.child2 = instance; }}
             callbackFromParent={this.storeData} />
 
@@ -281,7 +281,7 @@ storeSenatorData = (data) => {
 
          {
             this.state.currentStep === 1 && this.state.presidents.length > 0 ?
-            <div className="row" style={{paddingTop: "0%", paddingLeft: "0%"}}>
+            <div className="row justify-content-center" style={{paddingTop: "0%", paddingLeft: "0%"}}>
                <div className="col-md-2 offset-md-1 col-3">
                   <button onClick={() => {this.prevStep(); this.child1.sendDataToParent()}}>
                      <img src={leftArrowIcon} style={{width: "30%", marginRight: 10}}/>
@@ -300,7 +300,7 @@ storeSenatorData = (data) => {
          }
          {
             this.state.currentStep === 2 ?
-            <div className="row" style={{paddingTop: "0%", paddingLeft: "0%"}}>
+            <div className="row justify-content-center" style={{paddingTop: "0%", paddingLeft: "0%"}}>
             <div className="col-md-2 offset-md-1 col-3">
                <button onClick={() => {this.prevStep(); this.child2.sendDataToParent()}}>
                   <img src={leftArrowIcon} style={{width: "30%", marginRight: 10}}/>
@@ -317,7 +317,7 @@ storeSenatorData = (data) => {
          }
          {
             this.state.currentStep === 3 ?
-            <div className="row" style={{paddingTop: "0%", paddingLeft: "0%"}}>
+            <div className="row justify-content-center" style={{paddingTop: "0%", paddingLeft: "0%"}}>
             <div className="col-md-2 offset-md-1 col-3">
                <button onClick={() => {this.prevStep(); this.child3.sendDataToParent()}}>
                   <img src={leftArrowIcon} style={{width: "30%", marginRight: 10}}/>
@@ -335,7 +335,7 @@ storeSenatorData = (data) => {
          }
          {
             this.state.currentStep === 4 ?
-            <div className="row" style={{paddingTop: "0%", paddingLeft: "0%"}}>
+            <div className="row justify-content-center" style={{paddingTop: "0%", paddingLeft: "0%"}}>
                <div className="col-md-2 offset-md-1 col-3">
                   <button onClick={() => {this.prevStep()}}>
                      <img src={leftArrowIcon} style={{width: "30%", marginRight: 10}}/>

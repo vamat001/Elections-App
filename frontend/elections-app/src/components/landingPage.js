@@ -175,7 +175,7 @@ class landingPage extends Component {
                </div>
              </div>
            </div>
-{/* 
+{/*
            <div class="feature-big" id="Candidates">
              <div class="container">
                <div class="row mb-5 site-section border-bottom">

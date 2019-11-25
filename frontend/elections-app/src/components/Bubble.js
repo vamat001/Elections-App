@@ -18,13 +18,14 @@ class Bubble extends Component {
    }
 
    sendDataToParent = () => {
-      let pos = this.props.position[0].ID;
-      pos = pos.replace(/[0-9]/g, '');
-      if(pos === "VP"){
+      // let pos = this.props.position[0].ID;
+      // pos = pos.replace(/[0-9]/g, '');
+      let pos = this.props.position[0].runningFor;
+      if(pos === "VicePresident"){
          let vp =  {"vp" : this.state.position};
          this.props.callbackFromParent(vp);
-      }else if(pos == "President"){
-         let president = { "president": this.state.position };
+      }else if(pos === "President"){
+         let president = {"president": this.state.position };
          this.props.callbackFromParent(president);
       }
 
@@ -43,17 +44,18 @@ class Bubble extends Component {
       //console.log(this.state);
       if(this.props.position.length !== 0){
 
-         let pos = this.props.position[0].ID;
-         pos = pos.replace(/[0-9]/g, '');
-         if(pos === "VP"){
-            heading = "Vice President";
-         }else if(pos == "President"){
-            heading = "President";
-         }
+         // let pos = this.props.position[0].ID;
+         // pos = pos.replace(/[0-9]/g, '');
+         // if(pos === "VP"){
+         //    heading = "Vice President";
+         // }else if(pos == "President"){
+         //    heading = "President";
+         // }
+         heading = this.props.position[0].runningFor;
 
 
          candidateList = this.props.position.map((e) => (
-            <li key={e.ID}>
+            <li className="bubbleList-li-tag" key={e.ID}>
                <input
                   type="radio"
                   id={e.ID}
@@ -61,17 +63,17 @@ class Bubble extends Component {
                   onChange={this.handleChange}
                   value={e.ID}
                   checked={this.state.position === e.ID}/>
-               <label htmlFor={e.ID}>{e.Name}</label>
+               <label htmlFor={e.ID}>{e.name}</label>
                <div className="check"></div>
             </li>
          ));
       }
       return(
          <div className="container">
-            <div className="row">
+            <div className="row justify-content-center justify-content-center" style={{paddingTop: "5%", paddingBottom: "5%"}}>
                <h1 style={{color: "white"}}>{heading}</h1>
             </div>
-            <ul>
+            <ul className="bubbleList">
                <ReactCSSTransitionGroup
                transitionName="example"
               transitionAppear={true}

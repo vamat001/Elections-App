@@ -27,14 +27,14 @@ class SubmitVotes extends Component {
 
       if(pres != null){
          try{
-            presName = pres[0]['Name'];
+            presName = pres[0]['name'];
             //this.setState({presName});
          }catch(error){
             console.log(error);
          }
          try{
             let vp = this.props.finalList['VP'];
-            vpName = vp[0]['Name'];
+            vpName = vp[0]['name'];
             //this.setState({vpName});
          }catch(error){
             console.log(error);
@@ -42,7 +42,7 @@ class SubmitVotes extends Component {
          try{
             let senators = this.props.finalList['mySenators'];
             senatorsList = senators.map(candidate =>
-               <li key={candidate[0]['ID']}>{candidate[0]['Name']}</li>
+               <li key={candidate[0]['ID']}>{candidate[0]['name']}</li>
             );
            //  senators.map(candidate =>{
            //    senatorNames.push(candidate[0]['Name']);
@@ -54,38 +54,16 @@ class SubmitVotes extends Component {
 
       }
       console.log(presName, vpName, senatorNames);
-      //console.log(pres[0]);
-      //console.log(this.state);
-         // finalList = this.props.finalList.map((e) => (
-         //    <li key={e}>
-         //       <label htmlFor={e.ID}>{e.Name}</label>
-         //       <div className="check"></div>
-         //    </li>
-         // ));
-//<h1>President: {presName}</h1>
-
-// {
-//    presName !== null ?
-//    <div className="row justify-content-md-center" style={{backgroundColor: "blue", textAlign: "center"}}>
-//          <h1> President: {presName}</h1>
-//    </div>
-//    : null
-// }
-
-// <div className="col">
-//    <h1 style={{color: "orange"}}>President: {presName}</h1>
-// </div>
-
-//<div style={{paddingTop: 0.7, paddingBottom: 0.7, width: "100%", backgroundColor:"black"}}></div>
+      
       return(
 
          <div className="container-fluid">
 
-         <div className="row" style={{width: "100%"}}>
+         <div className="row justify-content-md-center" style={{width: "100%", paddingTop: "5%", paddingBottom: "5%"}}>
             <h1 style={{color: "white"}}>Selected Candidates</h1>
          </div>
 
-            <div className="row" style={{ width: "100%"}}>
+            <div className="row justify-content-md-center" style={{ width: "100%", paddingTop: "5%", paddingBottom: "5%"}}>
                <div style={{ width: "100%", paddingBottom: 0, backgroundColor: "orange", borderRadius: 10, border:"solid 3px white"}}>
                   <div style={{paddingLeft: "5%", paddingBottom: "5%", paddingTop: "5%"}}>
                      <h1 style={{color: "white"}}>President</h1>
@@ -95,7 +73,7 @@ class SubmitVotes extends Component {
             </div>
 
 
-            <div className="row" style={{ width: "100%"}}>
+            <div className="row justify-content-md-center" style={{ width: "100%", paddingTop: "5%", paddingBottom: "5%"}}>
                <div style={{ width: "100%", paddingBottom: 0, backgroundColor: "orange", borderRadius: 10, border:"solid 3px white"}}>
                   <div style={{paddingLeft: "5%", paddingBottom: "5%", paddingTop: "5%"}}>
                      <h1 style={{color: "white"}}>Vice President</h1>
@@ -105,7 +83,7 @@ class SubmitVotes extends Component {
             </div>
 
 
-            <div className="row" style={{ width: "100%"}}>
+            <div className="row justify-content-md-center" style={{ width: "100%", paddingTop: "5%", paddingBottom: "5%"}}>
                <div style={{ width: "100%", paddingBottom: 0, backgroundColor: "orange", borderRadius: 10, border:"solid 3px white"}}>
                   <div style={{paddingLeft: "5%", paddingBottom: "5%", paddingTop: "5%"}}>
                      <h1 style={{color: "white"}}>Senators</h1>

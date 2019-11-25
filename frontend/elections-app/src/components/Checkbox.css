@@ -1,4 +1,4 @@
-ul li{
+.checkboxList .checkboxList-li-tag{
   color: #FFFFFF;
   display: block;
   position: relative;
@@ -8,12 +8,12 @@ ul li{
   border-bottom: 1px solid #333;
 }
 
-ul li input[type=radio]{
+.checkboxList .checkboxList-li-tag input[type=radio]{
   position: absolute;
   visibility: hidden;
 }
 
-ul li label{
+.checkboxList .checkboxList-li-tag label{
   display: block;
   position: relative;
   font-weight: 300;
@@ -26,11 +26,11 @@ ul li label{
   -webkit-transition: all 0.25s linear;
 }
 
-ul li:hover label{
+.checkboxList .checkboxList-li-tag:hover label{
 	color: #F1AB00;
 }
 
-ul li .check{
+.checkboxList .checkboxList-li-tag .check{
   display: block;
   position: absolute;
   border: 5px solid #FFFFFF;
@@ -44,11 +44,11 @@ ul li .check{
 	-webkit-transition: border .25s linear;
 }
 
-ul li:hover .check {
+.checkboxList .checkboxList-li-tag:hover .check {
   border: 5px solid #F1AB00;
 }
 
-ul li .check::before {
+.checkboxList .checkboxList-li-tag .check::before {
   display: block;
   position: absolute;
 	content: '';
@@ -91,7 +91,7 @@ input[type=radio]:checked ~ label{
 
 
 
-ul li .checkbox-label {
+.checkboxList .checkboxList-li-tag .checkbox-label {
     display: block;
     position: relative;
     margin: auto;
@@ -102,7 +102,7 @@ ul li .checkbox-label {
     width: 24px;
     clear: both;
 }
-ul li input[type=checkbox]{
+.checkboxList .checkboxList-li-tag input[type=checkbox]{
   position: absolute;
   visibility: hidden;
   opacity: 0;
@@ -110,7 +110,7 @@ ul li input[type=checkbox]{
 }
 
 
-ul li .checkbox-custom {
+.checkboxList .checkboxList-li-tag .checkbox-custom {
    display: block;
     position: absolute;
     top: 28px;
@@ -127,12 +127,12 @@ ul li .checkbox-custom {
     border: 2px solid;
 }
 
-ul li:hover .checkbox-custom {
+.checkboxList .checkboxList-li-tag:hover .checkbox-custom {
   border: 2px solid #F1AB00;
 }
 
 
-ul li input:checked ~ .checkbox-custom {
+.checkboxList .checkboxList-li-tag input:checked ~ .checkbox-custom {
     background-color: #F1AB00;
     border-radius: 5px;
     -webkit-transform: rotate(0deg) scale(1);
@@ -143,7 +143,7 @@ ul li input:checked ~ .checkbox-custom {
 }
 
 
-ul li .checkbox-custom::after {
+.checkboxList .checkboxList-li-tag .checkbox-custom::after {
     position: absolute;
     content: "";
     left: 12px;
@@ -165,7 +165,7 @@ ul li .checkbox-custom::after {
 }
 
 
-ul li input:checked ~ .checkbox-custom::after {
+.checkboxList .checkboxList-li-tag input:checked ~ .checkbox-custom::after {
   -webkit-transform: rotate(45deg) scale(1);
   -ms-transform: rotate(45deg) scale(1);
   transform: rotate(45deg) scale(1);
@@ -187,7 +187,7 @@ input[type=checkbox]:checked ~ label{
 
 
 /* For Ripple Effect */
-ul li .checkbox-custom::before {
+.checkboxList .checkboxList-li-tag .checkbox-custom::before {
     position: absolute;
     content: "";
     left: 10px;
@@ -201,7 +201,7 @@ ul li .checkbox-custom::before {
     transform: scale(0);
 }
 
-ul li input:checked ~ .checkbox-custom::before {
+.checkboxList .checkboxList-li-tag input:checked ~ .checkbox-custom::before {
     left: -3px;
     top: -3px;
     width: 24px;

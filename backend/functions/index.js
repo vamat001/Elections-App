@@ -37,7 +37,8 @@ app.get('/getSenators', (req, res) => {
 })
 
 app.get("/getAllPositions", (req, res) => {
-   admin.firestore().collection('AllPositions').get().then((data) => {
+   //AllPositions
+   admin.firestore().collection('undergradCandidates').get().then((data) => {
       let users = [];
       data.forEach((doc) => {
          users.push(doc.data());
