@@ -10,17 +10,9 @@ class NavHeader extends Component {
       >
         <div class="container">
           <div class="row align-items-center">
-            <div class="col-6 col-md-6 col-xl-2  d-block d-lg-none">
-              <h1 class="mb-0 site-logo">
-                <a href="index.html" class="text-black h2 mb-0">
-                  UCR Elections<span class="text-primary">.</span>{" "}
-                </a>
-              </h1>
-            </div>
-
             <div class="col-12 col-md-10 main-menu sticky-top">
               <nav class="site-navigation text-right" role="navigation">
-                <ul
+                <ol
                   class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block"
                   style={{ paddingRight: "4%" }}
                 >
@@ -54,7 +46,7 @@ class NavHeader extends Component {
                       Vote
                     </a>
                   </li>
-                </ul>
+                </ol>
               </nav>
             </div>
 
