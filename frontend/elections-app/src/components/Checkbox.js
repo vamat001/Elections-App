@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import "./Checkbox.css";
-// import axios from "axios";
+import axios from "axios";
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-// const API_BASE = "http://localhost:5000/elections-app-4e4df/us-central1/api";
+const API_BASE = "http://localhost:5000/elections-app-4e4df/us-central1/api";
 
 class Checkbox extends Component {
    constructor(){
@@ -39,6 +40,8 @@ class Checkbox extends Component {
   }
 
   sendDataToParent = () => {
+     // let pos = this.props.position[0].ID;
+     // pos = pos.replace(/[0-9]/g, '');
      let pos = this.props.position[0].runningFor;
      if(pos === "Senator"){
         let senatorsSelected =  {"senatorsSelected" : this.state.checkboxes};
@@ -51,14 +54,25 @@ class Checkbox extends Component {
      if(this.props.currentStep !== this.props.step){
        return null;
      }
+     let heading = "";
      // if(this.props.currentStep !== 2){
      //   return null;
      // }
      let secCheckBoxesList = null;
      //console.log(this.state);
      if(this.props.position.length !== 0 && this.state.checkboxes !== null){
+
+        // let pos = this.props.position[0].ID;
+        // pos = pos.replace(/[0-9]/g, '');
+        // if(pos === "Senator"){
+        //    heading = "Senator";
+        // }
+        heading = this.props.position[0].runningFor;
+
+
+
         secCheckBoxesList = this.props.position.map((e) => (
-           <li key={e.ID}>
+           <li className="checkboxList-li-tag" key={e.ID}>
               <input
                  type="checkbox"
                  id={e.ID}
@@ -73,8 +87,18 @@ class Checkbox extends Component {
      }
      return(
         <div className="container">
-           <ul>
-           {secCheckBoxesList}
+           <div className="row justify-content-center" style={{paddingTop: "5%", paddingBottom: "5%"}}>
+              <h1 style={{color: "white"}}>{heading}</h1>
+           </div>
+           <ul className="checkboxList">
+              <ReactCSSTransitionGroup
+              transitionName="example"
+             transitionAppear={true}
+             transitionAppearTimeout={500}
+             transitionEnter={false}
+             transitionLeave={false}>
+               {secCheckBoxesList}
+             </ReactCSSTransitionGroup>
            </ul>
         </div>
      );

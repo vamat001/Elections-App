@@ -13,30 +13,11 @@ admin.initializeApp({
 });
 const app = express();
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 const db = admin.firestore();
 firebase.initializeApp(config);
 
-function incrementVote(collectionPath, docName) {
-   let ref = db.collection('undergradVotes').doc(PresUID);
-   db.runTransaction(function(transaction){
-      return transaction.get(ref).then(function(refDoc){
-         if (!refDoc.exists){
-            console.log("Doc doesn't exist");
-         }
-         var newVoteCount = refDoc.data().voteCount + 1;
-         transaction.update(ref, { voteCount: newVoteCount });
-      });
-   })
-   .then(function() {
-      console.log("Transaction successfully committed!");
-   }).catch(function(error) {
-      console.log("Transaction failed: ", error);
-   });
-}
-
-app.get("/Candidates", (req, res) => {
+app.get("/getAllPositions", (req, res) => {
+   //AllPositions
    admin.firestore().collection('undergradCandidates').get().then((data) => {
       let users = [];
       data.forEach((doc) => {

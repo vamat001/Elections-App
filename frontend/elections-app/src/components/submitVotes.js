@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-// import axios from "axios";
+import axios from "axios";
 import "./submitVotes.css";
-// const API_BASE = "http://localhost:5000/elections-app-4e4df/us-central1/api";
+const API_BASE = "http://localhost:5000/elections-app-4e4df/us-central1/api";
 
 
 class SubmitVotes extends Component {
@@ -21,6 +21,7 @@ class SubmitVotes extends Component {
       let presName = null;
       let vpName = null;
       let senatorNames = [];
+      let senatorsList = null;
       let finalList = null;
       let pres = this.props.finalList['President'];
 
@@ -40,33 +41,56 @@ class SubmitVotes extends Component {
          }
          try{
             let senators = this.props.finalList['mySenators'];
-            senators.map(candidate =>{
-              senatorNames.push(candidate[0]['name']);
-           });
+            senatorsList = senators.map(candidate =>
+               <li key={candidate[0]['ID']}>{candidate[0]['name']}</li>
+            );
+           //  senators.map(candidate =>{
+           //    senatorNames.push(candidate[0]['Name']);
+           // });
            //this.setState({senatorNames});
          }catch(error){
             console.log(error);
          }
+
       }
-      console.log("Final selection: ", presName, vpName, senatorNames);
+      console.log(presName, vpName, senatorNames);
+      
       return(
 
          <div className="container-fluid">
-            <div className="row" style={{ width: "100%"}}>
-               <div className="col">President: {presName}</div>
+
+         <div className="row justify-content-md-center" style={{width: "100%", paddingTop: "5%", paddingBottom: "5%"}}>
+            <h1 style={{color: "white"}}>Selected Candidates</h1>
+         </div>
+
+            <div className="row justify-content-md-center" style={{ width: "100%", paddingTop: "5%", paddingBottom: "5%"}}>
+               <div style={{ width: "100%", paddingBottom: 0, backgroundColor: "orange", borderRadius: 10, border:"solid 3px white"}}>
+                  <div style={{paddingLeft: "5%", paddingBottom: "5%", paddingTop: "5%"}}>
+                     <h1 style={{color: "white"}}>President</h1>
+                     <h3 style={{color: "white"}}>{presName}</h3>
+                  </div>
+               </div>
             </div>
-            <div style={{paddingTop: 0.7, paddingBottom: 0.7, width: "100%", backgroundColor:"black"}}></div>
-            <div className="row" style={{width: "100%"}}>
-               <div className="col">Vice President: {vpName}</div>
+
+
+            <div className="row justify-content-md-center" style={{ width: "100%", paddingTop: "5%", paddingBottom: "5%"}}>
+               <div style={{ width: "100%", paddingBottom: 0, backgroundColor: "orange", borderRadius: 10, border:"solid 3px white"}}>
+                  <div style={{paddingLeft: "5%", paddingBottom: "5%", paddingTop: "5%"}}>
+                     <h1 style={{color: "white"}}>Vice President</h1>
+                     <h3 style={{color: "white"}}>{vpName}</h3>
+                  </div>
+               </div>
             </div>
-            <div style={{paddingTop: 0.7, paddingBottom: 0.7, width: "100%", backgroundColor:"black"}}></div>
-            <div className="row" style={{ width: "100%"}}>
-               <div className="col">Secretary: {senatorNames.join(', ')}</div>
+
+
+            <div className="row justify-content-md-center" style={{ width: "100%", paddingTop: "5%", paddingBottom: "5%"}}>
+               <div style={{ width: "100%", paddingBottom: 0, backgroundColor: "orange", borderRadius: 10, border:"solid 3px white"}}>
+                  <div style={{paddingLeft: "5%", paddingBottom: "5%", paddingTop: "5%"}}>
+                     <h1 style={{color: "white"}}>Senators</h1>
+                     <h3 style={{color: "white"}}>{senatorsList}</h3>
+                  </div>
+               </div>
             </div>
-
-
-
-
 
          </div>
 
