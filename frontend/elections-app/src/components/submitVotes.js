@@ -54,12 +54,12 @@ class SubmitVotes extends Component {
 
       }
       console.log(presName, vpName, senatorNames);
-      
+
       return(
 
          <div className="container-fluid">
 
-         <div className="row justify-content-md-center" style={{width: "100%", paddingTop: "5%", paddingBottom: "5%"}}>
+         <div className="row justify-content-center" style={{width: "100%", paddingTop: "5%", paddingBottom: "5%"}}>
             <h1 style={{color: "white"}}>Selected Candidates</h1>
          </div>
 

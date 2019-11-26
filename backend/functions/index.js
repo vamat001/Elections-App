@@ -48,5 +48,26 @@ app.post("/addDBData", (req, res) => {
         res.send("Batch commit failed");
    });
 })
+app.get("/NewReferendums", (req, res) => {
+   admin.firestore().collection('NewReferendums').get().then((data) => {
+      let users = [];
+      data.forEach((doc) => {
+         users.push(doc.data());
+      });
+      return res.json(users);
+   })
+   .catch((err) => console.error(err));
+})
+app.get("/unapprovedCandidates", (req, res) => {
+   admin.firestore().collection('unapprovedCandidates').get().then((data) => {
+      let users = [];
+      data.forEach((doc) => {
+         users.push(doc.data());
+      });
+      return res.json(users);
+   })
+   .catch((err) => console.error(err));
+})
+
 
 exports.api = functions.https.onRequest(app);
