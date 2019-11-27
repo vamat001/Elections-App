@@ -3,3 +3,14 @@ body {
   max-width: 100%;
   overflow-x: hidden;
 }
+
+#logoPic {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  margin: auto;
+}
+
+.roundPic {
+  border-radius: 8%;
+}

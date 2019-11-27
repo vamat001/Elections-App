@@ -63,9 +63,10 @@ class landingPage extends Component {
           <div class="container d-none d-lg-block">
             <div class="row">
               <div class="col-12 text-center mb-4 mt-5">
-                <h1 class="mb-0 site-logo text-black h2 mb-0">
+                {/* <h1 class="mb-0 site-logo text-black h2 mb-0">
                   UCR Elections<span class="text-primary"></span>
-                </h1>
+                </h1> */}
+                <img class="mb-0 site-logo" id="logoPic" src="images/asucrlogo.png"></img>
               </div>
             </div>
           </div>
@@ -96,7 +97,7 @@ class landingPage extends Component {
                       </div>
                     </div>
                     <div class="col-md-6 mr-auto">
-                      <img src="images/ucr.jpg" class="img-fluid" />
+                      <img src="images/ucr.jpg" class="img-fluid roundPic" />
                     </div>
                   </div>
                 </div>
