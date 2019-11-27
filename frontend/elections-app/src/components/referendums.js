@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import NavHeader from "./NavHeader";
 import firebase from "./firebase.js";
+import "./referendums.css";
 
 class referendums extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.state = {};
+    this.handleClick = this.handleClick.bind(this);
     firebase
       .firestore()
       .collection("Referendums")
@@ -21,6 +24,9 @@ class referendums extends Component {
         },
         () => null
       );
+  }
+  handleClick() {
+    return console.log("hello world");
   }
   render() {
     if (this.state) {
@@ -58,9 +64,11 @@ class referendums extends Component {
               <div class="container d-none d-lg-block">
                 <div class="row">
                   <div class="col-12 text-center mb-4 mt-5">
-                    <h1 class="mb-0 site-logo text-black h2 mb-0">
-                      UCR Elections<span class="text-primary"></span>
-                    </h1>
+                    <img
+                      class="mb-0 site-logo"
+                      id="logoPic"
+                      src="images/asucrlogo.png"
+                    ></img>
                   </div>
                 </div>
               </div>
@@ -68,114 +76,11 @@ class referendums extends Component {
               {/*Referendums*/}
               <div class="site-section" id="Referendums">
                 <div class="container">
-                  <div class="row mb-5">
-                    <div class="col-12 text-center">
-                      <h2 class="section-title mb-3">Referendums</h2>
-                    </div>
-                  </div>
-                  <div class="row align-items-stretch">
+                  <div class="row align-items-stretch" id="paddingTop">
                     {cards}
-                    {/*} <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up">
-                  <div class="unit-4 d-block">
-                    <div class="unit-4-icon mb-3">
-                      <span class="icon-wrap">
-                        <span class="text-primary icon-autorenew"></span>
-                      </span>
-                    </div>
-                    <div>
-                      <h3>Referendum 1</h3>
-                      <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Perferendis quis molestiae vitae eligendi at.
-                      </p>
-                    </div>
                   </div>
                 </div>
-                <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up">
-                  <div class="unit-4 d-block">
-                    <div class="unit-4-icon mb-3">
-                      <span class="icon-wrap">
-                        <span class="text-primary icon-store_mall_directory"></span>
-                      </span>
-                    </div>
-                    <div>
-                      <h3>Referendum 2</h3>
-                      <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Perferendis quis molestiae vitae eligendi at.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up">
-                  <div class="unit-4 d-block">
-                    <div class="unit-4-icon mb-3">
-                      <span class="icon-wrap">
-                        <span class="text-primary icon-shopping_basket"></span>
-                      </span>
-                    </div>
-                    <div>
-                      <h3>Referendum 3</h3>
-                      <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Perferendis quis molestiae vitae eligendi at.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up">
-                  <div class="unit-4 d-block">
-                    <div class="unit-4-icon mb-3">
-                      <span class="icon-wrap">
-                        <span class="text-primary icon-settings_backup_restore"></span>
-                      </span>
-                    </div>
-                    <div>
-                      <h3>Referendum 4</h3>
-                      <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Perferendis quis molestiae vitae eligendi at.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up">
-                  <div class="unit-4 d-block">
-                    <div class="unit-4-icon mb-3">
-                      <span class="icon-wrap">
-                        <span class="text-primary icon-sentiment_satisfied"></span>
-                      </span>
-                    </div>
-                    <div>
-                      <h3>Referendum 5</h3>
-                      <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Perferendis quis molestiae vitae eligendi at.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4 mb-4 mb-lg-4" data-aos="fade-up">
-                  <div class="unit-4 d-block">
-                    <div class="unit-4-icon mb-3">
-                      <span class="icon-wrap">
-                        <span class="text-primary icon-power"></span>
-                      </span>
-                    </div>
-                    <div>
-                      <h3>Referendum 6</h3>
-                      <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Perferendis quis molestiae vitae eligendi at.
-                      </p>
-                    </div>
-                  </div>
-    </div> */}
-                  </div>
-                </div>
+                <button onClick={this.handleClick}>Button</button>
               </div>
             </div>
           </body>
