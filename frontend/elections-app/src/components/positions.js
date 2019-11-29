@@ -53,41 +53,43 @@ class positions extends Component {
 
   render() {
     if (this.state) {
-      const positionNames = this.state.positionsArray.map(pos => {
-        if (this.state.candidatesArray) {
-          const cardLists = this.state.candidatesArray.map(can => {
-            if (can.runningFor === pos.id && !can.gradStudent) {
-              return (
-                <CardDeck>
-                  <div className="mt-1">
-                    <Card border="dark" bg="light">
-                      <Card.Body>
-                        <Card.Title>{can.name}</Card.Title>
-                        <Card.Subtitle className="mb-2 text-muted">
-                          {can.major}
-                        </Card.Subtitle>
-                        <Card.Text>{can.description}</Card.Text>
-                      </Card.Body>
-                    </Card>
-                  </div>
-                </CardDeck>
-              );
-            }
-          });
+        if (this.state.positionsArray) {
+            const positionNames = this.state.positionsArray.map(pos => {
+                if (this.state.candidatesArray) {
+                    const cardLists = this.state.candidatesArray.map(can => {
+                        if (can.runningFor === pos.id && !can.gradStudent) {
+                            return (
+                                <CardDeck>
+                                    <div className="mt-1">
+                                        <Card border="dark" bg="light">
+                                            <Card.Body>
+                                                <Card.Title>{can.name}</Card.Title>
+                                                <Card.Subtitle className="mb-2 text-muted">
+                                                    {can.major}
+                                                </Card.Subtitle>
+                                                <Card.Text>{can.description}</Card.Text>
+                                            </Card.Body>
+                                        </Card>
+                                    </div>
+                                </CardDeck>
+                            );
+                        }
+                    });
 
-          return (
-            <li class="list-group-item">
-              <h1 class="list-group-item-heading">{pos.id}</h1>
-              <p class="list-group-item-text">{pos.description}</p>
-              <Card bg="info" text="black" style={{ width: "auto" }}>
-                <Card.Header>Candidates</Card.Header>
-                <Card.Body>{cardLists}</Card.Body>
-              </Card>
-            </li>
-          );
+                    return (
+                        <li class="list-group-item">
+                            <h1 class="list-group-item-heading">{pos.id}</h1>
+                            <p class="list-group-item-text">{pos.description}</p>
+                            <Card text="black" style={{ width: "auto" }}>
+                                <Card.Header>Candidates</Card.Header>
+                                <Card.Body>{cardLists}</Card.Body>
+                            </Card>
+                        </li>
+                    );
+                }
+            });
+            return <div class="list-group">{positionNames}</div>;
         }
-      });
-      return <div class="list-group">{positionNames}</div>;
     } else {
       return <div class="list-group"></div>;
     }
