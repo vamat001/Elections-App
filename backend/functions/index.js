@@ -28,6 +28,18 @@ app.get("/getAllPositions", (req, res) => {
    .catch((err) => console.error(err));
 })
 
+app.get("/getAllVotes", (req, res) => {
+   //AllPositions
+   admin.firestore().collection('undergradVotes').get().then((data) => {
+      let users = [];
+      data.forEach((doc) => {
+         users.push(doc.data());
+      });
+      return res.json(users);
+   })
+   .catch((err) => console.error(err));
+})
+
 app.post("/addDBData", (req, res) => {
    let rawdata = fs.readFileSync('../test_input.json');
    let student = JSON.parse(rawdata);
