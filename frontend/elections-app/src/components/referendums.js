@@ -82,7 +82,7 @@ class referendums extends Component {
             </div>
             <NavHeader />
             {/*Referendums*/}
-            <div class="site-section" id="Referendums">
+            <div class="site-section">
               <div class="container">
                 <div class="row align-items-stretch" id="paddingTop">
                   {cards}

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import {
   VerticalTimeline,
   VerticalTimelineElement
@@ -84,9 +85,11 @@ class landingPage extends Component {
                     <div class="col-lg-4 mr-auto">
                       <h1>Voting is Open!</h1>
                       <p class="mb-5">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Laboriosam assumenda ea quo cupiditate facere deleniti
-                        fuga officia.
+                        Click the link below to register and vote!
+                      </p>
+                      <p class="font-weight-bold">
+                        Note: Only current UCR Students with a valid UCR email
+                        can sign up to vote.
                       </p>
                       <div>
                         <button
@@ -472,11 +475,8 @@ class landingPage extends Component {
                   </figure>
                   <blockquote class="mb-3">
                     <p>
-                      &ldquo;Lorem ipsum dolor sit amet consectetur adipisicing
-                      elit. Consectetur unde reprehenderit aperiam quaerat
-                      fugiat repudiandae explicabo animi minima fuga beatae
-                      illum eligendi incidunt consequatur. Amet dolores
-                      excepturi earum unde iusto.&rdquo;
+                      Here is a short description of who I am and what I am
+                      about. Here is why you should vote for me.
                     </p>
                   </blockquote>
                   <p class="text-black">
@@ -498,11 +498,8 @@ class landingPage extends Component {
 
                   <blockquote class="mb-3">
                     <p>
-                      &ldquo;Lorem ipsum dolor sit amet consectetur adipisicing
-                      elit. Consectetur unde reprehenderit aperiam quaerat
-                      fugiat repudiandae explicabo animi minima fuga beatae
-                      illum eligendi incidunt consequatur. Amet dolores
-                      excepturi earum unde iusto.&rdquo;
+                      Here is a short description of who I am and what I am
+                      about. Here is why you should vote for me.
                     </p>
                   </blockquote>
 
@@ -525,11 +522,8 @@ class landingPage extends Component {
                   </figure>
                   <blockquote class="mb-3">
                     <p>
-                      &ldquo;Lorem ipsum dolor sit amet consectetur adipisicing
-                      elit. Consectetur unde reprehenderit aperiam quaerat
-                      fugiat repudiandae explicabo animi minima fuga beatae
-                      illum eligendi incidunt consequatur. Amet dolores
-                      excepturi earum unde iusto.&rdquo;
+                      Here is a short description of who I am and what I am
+                      about. Here is why you should vote for me.
                     </p>
                   </blockquote>
                   <p class="text-black">
@@ -551,29 +545,26 @@ class landingPage extends Component {
                   </figure>
                   <blockquote class="mb-3">
                     <p>
-                      &ldquo;Lorem ipsum dolor sit amet consectetur adipisicing
-                      elit. Consectetur unde reprehenderit aperiam quaerat
-                      fugiat repudiandae explicabo animi minima fuga beatae
-                      illum eligendi incidunt consequatur. Amet dolores
-                      excepturi earum unde iusto.&rdquo;
+                      Here is a short description of who I am and what I am
+                      about. Here is why you should vote for me.
                     </p>
                   </blockquote>
                   <p class="text-black">
-                    <strong>Kyle McDonald</strong>
+                    <strong>Kylie McDonald</strong>
                   </p>
                 </div>
               </div>
             </div>
             <div>
               <p style={{ textAlign: "center" }}>
-                <a href="#" class="btn btn-primary">
-                  All Candidates
+                <a href="#" class="btn">
+                  <Link to="/candidates">All Candidates</Link>
                 </a>
               </p>
             </div>
           </div>
 
-          <div class="site-section" id="blog-section">
+          {/*<div class="site-section" id="blog-section">
             <div class="container">
               <div class="row mb-5">
                 <div class="col-12 text-center">
@@ -752,7 +743,7 @@ class landingPage extends Component {
                 </p>
               </div>
             </div>
-          </div>
+          </div>*/}
         </div>
       </body>
     );

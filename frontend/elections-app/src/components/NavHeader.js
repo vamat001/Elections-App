@@ -22,13 +22,8 @@ class NavHeader extends Component {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/positions" class="nav-link">
-                      Positions
-                    </Link>
-                  </li>
-                  <li>
                     <Link to="/candidates" class="nav-link">
-                      Candidates
+                      Positions | Candidates
                     </Link>
                   </li>
                   <li>

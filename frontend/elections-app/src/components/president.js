@@ -50,7 +50,7 @@ class candidates extends Component {
     if (this.state) {
       if (this.state.candidatesArray) {
         const cardLists = this.state.candidatesArray.map(can => {
-          if (!can.gradStudent) {
+          if (can.runningFor === "President" && !can.gradStudent) {
             return (
               <div class="card text-center">
                 <div class="card-body">
@@ -84,7 +84,7 @@ class candidates extends Component {
               </div>
             </div>
             <NavHeader />
-            <div class="container site-section padTop" data-aos="fade-up">
+            <div class="container site-section padTop">
               <div class="row">
                 <Sidebar />
                 <div class="col-lg-9">{cardLists}</div>
