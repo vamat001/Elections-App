@@ -7,9 +7,11 @@ import candidates from "./components/candidates.js";
 import login from "./components/login.js";
 import dashboard from "./components/dashboard.js";
 import Admin from "./components/admin.js";
+import AdminLogin from "./components/adminLogin.js";
 import ChangeCandidates from "./components/changeCandidates.js";
 import ChangeReferendums from "./components/changeReferendums.js";
 import ApproveCandidates from "./components/approveCandidates.js";
+
 
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "./App.css";
@@ -31,6 +33,7 @@ class App extends Component {
           <Route exact path="/UpdateCandidates" component={ChangeCandidates} />
           <Route exact path="/ChangeReferendums" component={ChangeReferendums} />
           <Route exact path="/ApproveCandidates" component={ApproveCandidates} />
+          <Route exact path="/adminLogin" component={AdminLogin} />
         </Switch>
       </BrowserRouter>
     );

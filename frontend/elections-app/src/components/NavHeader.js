@@ -46,6 +46,11 @@ class NavHeader extends Component {
                       Vote
                     </a>
                   </li>
+                  <li>
+                    <Link to="/adminLogin" class="nav-link">
+                      Admin
+                    </Link>
+                  </li>
                 </ol>
               </nav>
             </div>

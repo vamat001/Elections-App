@@ -74,44 +74,73 @@ class Timeline extends Component {
         await axios.get(API_BASE + "/getAllVotes")
         .then((res) => {
             console.log(res);
-            this.setState({allPositions: res.data});
+            this.setState({allPositions: res.data}, this.setAllCandidates);
         })
-        
-        let BCOESenators = [];
-        let CNASSenators = [];
-        let CHASSSenators = [];
-        let vicePresidents = [];
-        let presidents = [];
 
-        this.state.allPositions.filter((position) => {
-            let pos = position.runningFor;
-            if(pos === "Senator"){
-                if (position.college === "BCOE") {
-                    BCOESenators.push(position);
-                } else if (position.college === "CNAS") {
-                    CNASSenators.push(position);
-                } else if (position.college === "CHASS") {
-                    CHASSSenators.push(position);
-                } else {
-                    console.log("Wrong college value:", position);
-                }
-            }else if(pos === "VicePresident"){
-                vicePresidents.push(position);
-            }else if(pos === "President"){
-                presidents.push(position);
-            }
-        })
-        this.setState({presidents, vicePresidents, BCOESenators, CNASSenators, CHASSSenators});
-        console.log("State after database pull: ", this.state);
-        this.graphData(this.state.presidents);
+        // let BCOESenators = [];
+        // let CNASSenators = [];
+        // let CHASSSenators = [];
+        // let vicePresidents = [];
+        // let presidents = [];
+
+        // this.state.allPositions.filter((position) => {
+        //     let pos = position.runningFor;
+        //     if(pos === "Senator"){
+        //         if (position.college === "BCOE") {
+        //             BCOESenators.push(position);
+        //         } else if (position.college === "CNAS") {
+        //             CNASSenators.push(position);
+        //         } else if (position.college === "CHASS") {
+        //             CHASSSenators.push(position);
+        //         } else {
+        //             console.log("Wrong college value:", position);
+        //         }
+        //     }else if(pos === "VicePresident"){
+        //         vicePresidents.push(position);
+        //     }else if(pos === "President"){
+        //         presidents.push(position);
+        //     }
+        // })
+        //this.setState({presidents, vicePresidents, BCOESenators, CNASSenators, CHASSSenators});
+        // console.log("State after database pull: ", this.state);
+        // this.graphData(this.state.presidents);
     }
+
+    setAllCandidates = () => {
+      let BCOESenators = [];
+      let CNASSenators = [];
+      let CHASSSenators = [];
+      let vicePresidents = [];
+      let presidents = [];
+
+      this.state.allPositions.filter((position) => {
+          let pos = position.runningFor;
+          if(pos === "Senator"){
+             if (position.college === "BCOE") {
+                  BCOESenators.push(position);
+             } else if (position.college === "CNAS") {
+                  CNASSenators.push(position);
+             } else if (position.college === "CHASS") {
+                  CHASSSenators.push(position);
+             } else {
+                  console.log("Wrong college value:", position);
+             }
+          }else if(pos === "VicePresident"){
+             vicePresidents.push(position);
+          }else if(pos === "President"){
+             presidents.push(position);
+          }
+      })
+      this.setState({presidents, vicePresidents, BCOESenators, CNASSenators, CHASSSenators}, this.graphData(this.state.presidents));
+      console.log("State after database pull: ", this.state);
+   }
 
     graphData = (candidates) => {
       if (candidates && candidates.length > 0) {
         var numberOfItems = candidates.length;
         let s = [];
         if (numberOfItems > 1) {
-          var rainbow = new Rainbow(); 
+          var rainbow = new Rainbow();
           rainbow.setNumberRange(1, numberOfItems);
           rainbow.setSpectrum('#159957', '#155799');
           for (var i = 1; i <= numberOfItems; i++) {
@@ -121,7 +150,7 @@ class Timeline extends Component {
         } else {
           s.push("#159957");
         }
-        
+
         let names = [];
         let votes = [];
 
@@ -129,7 +158,7 @@ class Timeline extends Component {
           names.push(candidate.name);
           votes.push(candidate.voteCount);
         })
-        
+
         this.state.dataBar.datasets[0].data = votes;
         this.state.dataBar.datasets[0].backgroundColor = s;
         this.state.barChartOptions.scales.yAxes[0].ticks.max = Math.ceil(Math.max.apply(null, votes) * 1.1);
@@ -146,7 +175,7 @@ class Timeline extends Component {
         let dateForm = date.getMonth() + 1 + "-" + date.getDate() + "-" + date.getFullYear();
         let lower = new Date("4-1-2020");
         let upper = new Date("4-26-2020");
-    
+
         //Set timeline visibility
         this.state.t1 = dateForm == "1-15-2020";
         this.state.t2 = dateForm == "2-12-2020";
@@ -426,7 +455,7 @@ class Timeline extends Component {
 
 
 
-            
+
         );
     }
 }

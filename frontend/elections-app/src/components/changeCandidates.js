@@ -96,19 +96,29 @@ openModal = () => {
 handleModalClose = () => {
    this.setState({showModal: false});
 }
+
+logout = () => {
+   console.log("comes here");
+   firebase.auth().signOut().then(function() {
+      console.log("signed out");
+   }).catch(function(error) {
+      console.log(error);
+   });
+   this.props.history.push("/");
+}
    render(){
       console.log(this.state);
       return(
          <div>
          <Navbar bg="primary" variant="light">
-          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+          <Navbar.Brand href="/">Home</Navbar.Brand>
           <Nav className="mr-auto">
             <Nav.Link href="/UpdateCandidates">Change Candidates</Nav.Link>
             <Nav.Link href="/ChangeReferendums">Change Referendums</Nav.Link>
             <Nav.Link href="/ApproveCandidates">Approve Candidates</Nav.Link>
           </Nav>
           <Nav>
-             <Button style={{backgroundColor:'gray'}}>
+             <Button onClick={this.logout} style={{backgroundColor:'gray'}}>
                 Logout
              </Button>
           </Nav>

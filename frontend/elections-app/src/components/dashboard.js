@@ -11,6 +11,7 @@ import rightArrowIcon from "./rightArrowIcon.png";
 import leftArrowIcon from "./leftArrowIcon.png";
 import checkmarkIcon from "./checkmarkIcon.png";
 import firebase from "firebase";
+import { Button, Modal } from "react-bootstrap";
 const API_BASE = "http://localhost:5000/elections-app-4e4df/us-central1/api";
 
 class dashboard extends Component {
@@ -31,6 +32,7 @@ class dashboard extends Component {
          senatorsSelected: null,
          finalCandidatesList: {},
          selectedCandidateIDS: [],
+         showModal: false
 
 
       };
@@ -140,6 +142,8 @@ class dashboard extends Component {
          }
       }
       console.log("Voting Complete!");
+      this.setState({showModal: true});
+
 
    }
 
@@ -194,6 +198,9 @@ storeSenatorData = (data) => {
    //    this.setState({[key]: data[key]});
    // }
    this.setState({checkboxes: data});
+}
+returnHome = () => {
+   this.props.history.push("/");
 }
 
 
@@ -323,10 +330,20 @@ storeSenatorData = (data) => {
                   </button>
                </div>
                <div className="col-md-2 offset-md-3 col-3 offset-2">
-                  <button onClick={() => {this.submitAndUpdateVotes();this.nextStep()}}>Submit
+                  <button onClick={() => {this.submitAndUpdateVotes()}}>Submit
                      <img src={checkmarkIcon} style={{width: "25%", marginLeft: 10}}/>
                   </button>
                </div>
+               <Modal show={this.state.showModal}>
+                 <Modal.Header closeButton={false}>
+                   <Modal.Title>Voting Complete</Modal.Title>
+                 </Modal.Header>
+                 <Modal.Body>Thanks for Voting!</Modal.Body>
+                 <Modal.Footer>
+                     <Button onClick={this.returnHome} variant="success">Return to Home</Button>
+
+                 </Modal.Footer>
+               </Modal>
             </div>
 
             : null

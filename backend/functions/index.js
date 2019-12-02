@@ -81,5 +81,121 @@ app.get("/unapprovedCandidates", (req, res) => {
    .catch((err) => console.error(err));
 })
 
+const isEmpty = (string) => {
+   if(string.trim() === ''){
+      return true;
+   }else{
+      return false;
+   }
+};
+
+const isEmail = (email) => {
+  const regEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if (email.match(regEx)){
+     return true;
+  }else {
+     return false
+  }
+};
+
+app.post('/adminSignup', (req, res) => {
+   let token, userID, userData;
+
+   const newUser = {
+      name: req.body.name,
+      email: req.body.email,
+      password: req.body.password,
+      confirmPassword: req.body.confirmPassword
+   };
+
+   let errors = {};
+   if(isEmpty(newUser.email)){
+      errors.email = 'Must not be empty';
+   }else if(!isEmail(newUser.email)){
+      errors.email = 'Must be a valid email address';
+   }
+   if(isEmpty(newUser.password)){
+      errors.password = 'Must not be empty';
+   }
+   if(newUser.password !== newUser.confirmPassword){
+      errors.confirmPassword = 'Passwords must match';
+   }
+   if(Object.keys(errors).length > 0){
+      return res.status(400).json(errors);
+   }
+
+   firebase.auth().createUserWithEmailAndPassword(newUser.email, newUser.password)
+      .then(data => {
+         userData = data.user;
+         userID = data.user.uid;
+         const claims = {
+            admin: true
+         };
+         admin.auth().setCustomUserClaims(userID, {admin: true});
+         return data.user.getIdToken();
+      })
+      .then(tokenID => {
+         token = tokenID;
+         const userCredentials = {
+            email: newUser.email,
+            name: newUser.name,
+            createdAt: new Date().toISOString(),
+            userID
+         };
+         return db.collection('adminUsers').doc(userID).set(userCredentials);
+
+      })
+      .then(() => {
+         return res.status(201).json({ token });
+      })
+      .catch((err) => {
+            console.error(err);
+            return res.status(500).json({error : err.code});
+         }
+      );
+});
+
+app.post('/adminLogin', (req, res) => {
+   const user = {
+      email: req.body.email,
+      password: req.body.password
+   };
+   let errors = {};
+   if(isEmpty(user.email)){
+      errors.email = 'Must not be empty';
+   }
+   if(isEmpty(user.password)){
+      errors.password = 'Must not be empty';
+   }
+
+   if(Object.keys(errors).length > 0){
+      return res.status(400).json(errors);
+   }
+
+   firebase.auth().signInWithEmailAndPassword(user.email, user.password)
+      .then(data => {
+         return data.user.getIdToken();
+      })
+      .then(token => {
+         return res.json({ token });
+      })
+      .catch(err => {
+         console.error(err);
+         if(err.code === "auth/wrong-password"){
+            return res.status(403).json({general: 'Wrong Credentials, please try again'});
+         }else{
+            return res.status(500).json({error: err.code});
+         }
+      })
+
+});
+
+app.post('/claims', (req, res) => {
+   const userToken = req.body.token;
+   admin.auth().verifyIdToken(userToken).then((claims) => {
+         res.send(claims);
+      });
+});
+
 
 exports.api = functions.https.onRequest(app);
