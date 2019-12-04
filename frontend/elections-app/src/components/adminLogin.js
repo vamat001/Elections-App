@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import firebase from "firebase";
-import { Container, Row, Col, Form, Navbar, Nav, Button, InputGroup, FormControl, Dropdown, DropdownButton, Modal, Card } from "react-bootstrap";
+import { Container, Row, Col, Form, Navbar, Nav, Button, InputGroup, FormControl, Dropdown, DropdownButton, Modal, Card, Spinner } from "react-bootstrap";
 const API_BASE = "http://localhost:5000/elections-app-4e4df/us-central1/api";
 
 class AdminLogin extends Component {
@@ -10,7 +10,8 @@ class AdminLogin extends Component {
       this.state = {
          email: '',
          password: '',
-         token: ''
+         token: '',
+         loading: false
       }
    }
 
@@ -24,11 +25,11 @@ class AdminLogin extends Component {
       email: this.state.email,
       password: this.state.password
       }
+      this.setState({loading: true});
 
       await axios.post(API_BASE + '/adminLogin', userData)
          .then((res) => {
             this.setState({ token: res.data.token });
-            console.log('bye');
             console.log("Updated token ",this.state);
          })
       const newToken = {
@@ -46,11 +47,10 @@ class AdminLogin extends Component {
                   isAdmin = true;
                }
             }catch(error){
-               console.log('hi');
                console.log(error);
             }
          })
-
+         this.setState({loading: false});
          if(isAdmin === true){
             this.props.history.push('/UpdateCandidates');
          }else{
@@ -82,6 +82,18 @@ class AdminLogin extends Component {
                 Sign In
               </Button>
             </Form>
+            {
+               this.state.loading ?
+               <Row className="justify-content-center" style={{paddingTop: 0}}>
+                  <Spinner animation="border" role="status" size="lg">
+                    <span className="sr-only">Loading...</span>
+                  </Spinner>
+               </Row>
+               :  null
+
+
+            }
+
          </Container>
       );
    }
