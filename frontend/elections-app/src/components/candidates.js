@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import NavHeader from "./NavHeader.js";
+import Sidebar from "./Sidebar.js";
+import "./Sidebar.css";
 import sampleImage from "../avatar.png";
 import firebase, { auth, provider, firestore } from "./firebase.js";
 import { Card, Button, Row, Col } from "react-bootstrap";
@@ -127,7 +129,7 @@ class candidates extends Component {
             <div class="container site-section padTop" data-aos="fade-up">
               <Row>
                 <div class="col-sm-12 col-md-6 col-lg-3">
-                  <ul class="list-group" style={{paddingTop: "2px"}}>
+                  <ul class="list-group">
                     <li
                       class="list-group-item tableItem"
                       onClick={this.handlePres}

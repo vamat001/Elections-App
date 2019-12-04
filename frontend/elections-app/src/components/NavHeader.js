@@ -4,13 +4,10 @@ import { Link } from "react-router-dom";
 class NavHeader extends Component {
   render() {
     return (
-      <header
-        class="site-navbar py-md-4 js-sticky-header site-navbar-target"
-        role="banner"
-      >
+      <header class="site-navbar py-md-4 site-navbar-target" role="banner">
         <div class="container">
           <div class="row align-items-center">
-            <div class="col-12 col-md-10 main-menu sticky-top">
+            <div class="col-12 col-md-10 main-menu">
               <nav class="site-navigation text-right" role="navigation">
                 <ol
                   class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block"
@@ -21,9 +18,14 @@ class NavHeader extends Component {
                       Home
                     </Link>
                   </li>
+                  {/*<li>
+                    <Link to="/positions" class="nav-link">
+                      Positions
+                    </Link>
+                  </li>*/}
                   <li>
                     <Link to="/candidates" class="nav-link">
-                      Positions & Candidates
+                      Candidates | Positions
                     </Link>
                   </li>
                   <li>
@@ -37,7 +39,7 @@ class NavHeader extends Component {
                     </Link>
                   </li>
                   <li>
-                  <Link to="/login" class="nav-link">
+                    <Link to="/login" class="nav-link">
                       Vote
                     </Link>
                   </li>

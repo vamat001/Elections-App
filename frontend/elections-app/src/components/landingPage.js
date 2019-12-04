@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import {
   VerticalTimeline,
   VerticalTimelineElement
@@ -64,18 +65,16 @@ class landingPage extends Component {
           <div class="container d-none d-lg-block">
             <div class="row">
               <div class="col-12 text-center mb-4 mt-5">
-                <h1 class="mb-0 site-logo text-black h2 mb-0">
-                  <img
-                    class="mb-0 site-logo"
-                    id="logoPic"
-                    src="images/asucrlogo.png"
-                  ></img>
-                </h1>
+                <img
+                  class="mb-0 site-logo"
+                  id="logoPic"
+                  src="images/asucrlogo.png"
+                ></img>
               </div>
             </div>
           </div>
           <NavHeader />
-          <div class="site-blocks-cover">
+          <div class="site-blocks-cover" id="landing">
             <div class="container">
               <div class="row align-items-center justify-content-center">
                 <div
@@ -87,9 +86,11 @@ class landingPage extends Component {
                     <div class="col-lg-4 mr-auto">
                       <h1>Voting is Open!</h1>
                       <p class="mb-5">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Laboriosam assumenda ea quo cupiditate facere deleniti
-                        fuga officia.
+                        Click the link below to register and vote!
+                      </p>
+                      <p class="font-weight-bold">
+                        Note: Only current UCR Students with a valid UCR email
+                        can sign up to vote.
                       </p>
                       <div>
                         <button
@@ -101,7 +102,7 @@ class landingPage extends Component {
                       </div>
                     </div>
                     <div class="col-md-6 mr-auto">
-                      <img src="images/ucr.jpg" class="img-fluid" />
+                      <img src="images/ucr.jpg" class="img-fluid roundPic" />
                     </div>
                   </div>
                 </div>
@@ -117,7 +118,7 @@ class landingPage extends Component {
                   <h2 class="section-title mb-3">Timeline/Vote Tracker</h2>
                 </div>
               </div>
-              <TimelineVotes/>
+              <TimelineVotes />
             </div>
           </div>
 

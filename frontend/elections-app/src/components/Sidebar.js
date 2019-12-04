@@ -1,51 +1,14 @@
-import React, { Component } from "react";
-import { Card, CardDeck, Button, Form, } from "react-bootstrap";
-import NavHeader from "./NavHeader.js";
-import Sidebar from "./Sidebar.js";
+import React from "react";
 import "./Sidebar.css";
-import firebase, { auth, provider, firestore } from "./firebase.js";
 
 class sidebar extends React.Component {
   render() {
     return (
-      // <div class="sidebarOutter">
-      //   <div class="sidebarInner">
-      //     <ul>
-      //       <li style={{cursor: 'pointer'}} onClick={() =>this.select("President")}>
-      //         Item 1
-      //       </li>
-      //       <hr/>
-      //       <li>
-      //         Item 2
-      //       </li>
-      //       <hr/>
-      //       <li>
-      //         Item 2
-      //       </li>
-      //     </ul>
-      //   </div>
-      // </div>
       <div class="col-sm-12 col-md-6 col-lg-3">
         <ul class="list-group">
           <li class="list-group-item tableItem">President</li>
-          <li class="list-group-item tableItem">Executive Vice President</li>
-          <li class="list-group-item tableItem">
-            Vice President of Internal Affairs
-          </li>
-          <li class="list-group-item tableItem">
-            Vice President of External Affairs
-          </li>
-          <li class="list-group-item tableItem">Vice President of Finance</li>
-          <li class="list-group-item tableItem">
-            Undergraduate Sustainability Director
-          </li>
-          <li class="list-group-item tableItem">Personnel Director</li>
-          <li class="list-group-item tableItem">
-            Marketing and Promotions Director
-          </li>
-          <li class="list-group-item tableItem">
-            Transfer/Non-Traditional Student Director
-          </li>
+          <li class="list-group-item tableItem">Vice President</li>
+          <li class="list-group-item tableItem">Senator</li>
         </ul>
       </div>
     );
