@@ -89,43 +89,6 @@ class login extends Component {
                             <h5 style={{color: "#FFFFFF"}}>Please select a UCR email when signing up</h5>
                         </div>
                     </Segment>
-                    <>
-                      <Form size="large" onSubmit={this.handleSubmit}>
-                        <Segment stacked>
-                            <div style={{paddingBottom: "1%"}}>
-                              <Form.Input
-                                fluid
-                                onChange={this.handleChange}
-                                placeholder="First Last Name"
-                                name="fullName"
-                              />
-                            </div>
-                            <div style={{paddingBottom: "1%"}}>
-                              <Form.Input
-                                fluid
-                                onChange={this.handleChange}
-                                placeholder="UCR e-mail"
-                                name="ucrEmail"
-                              />
-                            </div>
-                            <div style={{paddingBottom: "2%"}}>
-                              <Form.Input
-                                fluid
-                                onChange={this.handleChange}
-                                placeholder="Password"
-                                type="password"
-                                name="password"
-                              />
-                            </div>
-
-                            <div style={{paddingBottom: "2%"}}>
-                                <Form.Button fluid primary size="large">
-                                    Create Account
-                                </Form.Button>
-                             </div>
-                        </Segment>
-                      </Form>
-                    </>
                 </Grid.Column>
             </div>
             <button class="btn btn-primary2" onClick={this.login}>Sign Up With Google</button>

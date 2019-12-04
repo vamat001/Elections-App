@@ -17,7 +17,11 @@ class forms extends Component {
            <div class="container d-none d-lg-block">
              <div class="row">
                <div class="col-12 text-center mb-4 mt-5">
-                   <h1 class="mb-0 site-logo text-black h2 mb-0">UCR Elections<span class="text-primary"></span></h1>
+                  <img
+                    class="mb-0 site-logo"
+                    id="logoPic"
+                    src="images/asucrlogo.png"
+                  ></img>
                  </div>
              </div>
            </div>

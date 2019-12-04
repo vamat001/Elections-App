@@ -11,7 +11,7 @@ class candidates extends Component {
     super();
     firebase
       .firestore()
-      .collection("Candidates")
+      .collection("undergradCandidates")
       .onSnapshot(
         querySnapshot => {
           this.setState({

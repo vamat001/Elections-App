@@ -59,7 +59,11 @@ class referendums extends Component {
                 <div class="row">
                   <div class="col-12 text-center mb-4 mt-5">
                     <h1 class="mb-0 site-logo text-black h2 mb-0">
-                      UCR Elections<span class="text-primary"></span>
+                      <img
+                        class="mb-0 site-logo"
+                        id="logoPic"
+                        src="images/asucrlogo.png"
+                      ></img>
                     </h1>
                   </div>
                 </div>

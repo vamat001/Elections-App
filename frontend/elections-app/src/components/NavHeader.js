@@ -22,13 +22,8 @@ class NavHeader extends Component {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/positions" class="nav-link">
-                      Positions
-                    </Link>
-                  </li>
-                  <li>
                     <Link to="/candidates" class="nav-link">
-                      Candidates
+                      Positions & Candidates
                     </Link>
                   </li>
                   <li>
@@ -42,9 +37,9 @@ class NavHeader extends Component {
                     </Link>
                   </li>
                   <li>
-                    <a href="#" class="nav-link" onClick={this.goToLogin}>
+                  <Link to="/login" class="nav-link">
                       Vote
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <Link to="/adminLogin" class="nav-link">
