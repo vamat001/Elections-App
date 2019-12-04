@@ -1,14 +1,14 @@
 import React, { Component } from "react";
-import { Card, CardDeck, Button, Form, } from "react-bootstrap";
 import NavHeader from "./NavHeader.js";
-import Sidebar from "./Sidebar.js";
-import "./Sidebar.css";
+import sampleImage from "../avatar.png";
 import firebase, { auth, provider, firestore } from "./firebase.js";
+import { Card, Button, Row, Col } from "react-bootstrap";
+import { RemoveScrollBar } from "react-remove-scroll-bar";
 
 class candidates extends Component {
-
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    // this.state = { cantoggle: true };
     firebase
       .firestore()
       .collection("undergradCandidates")
@@ -29,153 +29,139 @@ class candidates extends Component {
         },
         () => null
       );
-      this.setState({
-          apply: false,
-      });
+    this.setState({ pres: false, vice: false, sen: false });
   }
 
-applyClick = () => {
-    this.setState({
-        apply: true,
-    });
-};
+  handlePres = () => {
+    this.setState({ pres: false, vice: true, sen: true });
+  };
 
-cancel = () => {
-    this.setState({
-        apply: false,
-    });
-}
+  handleVice = () => {
+    this.setState({ pres: true, vice: false, sen: true });
+  };
 
-handleChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-}
-
-handleSubmit = async (event) => {
-    event.preventDefault();
-    let uid = firebase.auth().currentUser.uid;
-    const db = firebase.firestore();
-    db.collection("unapprovedCandidates").doc(uid).set({
-        name: this.state.fullname,
-        id: uid,
-        major: this.state.major,
-        runningFor: this.state.runningFor,
-        description: this.state.description,
-        college: this.state.college,
-    });
-    this.setState({
-        apply: false,
-    });
-}
+  handleSen = () => {
+    this.setState({ pres: true, vice: true, sen: false });
+  };
 
   render() {
     if (this.state) {
-        if (this.state.candidatesArray) {
-            if (!this.state.apply) {
-                const cardLists = this.state.candidatesArray.map(can => {
-                    if (!can.gradStudent) {
-                        return (
-                            <div class="card text-center">
-                                <div class="card-body">
-                                    <h5 class="card-title">{can.name}</h5>
-                                    <p class="card-text">{can.description}</p>
-                                </div>
-                            </div>
-                        );
-                    }
-                });
-                return (
-                    <div class="site-wrap">
-                        <div class="site-mobile-menu site-navbar-target">
-                            <div class="site-mobile-menu-header">
-                                <div class="site-mobile-menu-close mt-3">
-                                    <span class="icon-close2 js-menu-toggle"></span>
-                                </div>
-                            </div>
-                            <div class="site-mobile-menu-body"></div>
-                        </div>
-                        <Button variant="primary" size="lg" onClick={this.applyClick} block>
-                            Apply To Be A Candidate Now!
-                        </Button>
-                        <div class="container d-none d-lg-block">
-                            <div class="row">
-                                <div class="col-12 text-center mb-4 mt-5">
-                                    <img
-                                        class="mb-0 site-logo"
-                                        id="logoPic"
-                                        src="images/asucrlogo.png"
-                                    ></img>
-                                </div>
-                            </div>
-                        </div>
-                        <NavHeader />
-                        <div class="container site-section padTop" data-aos="fade-up">
-                            <div class="row">
-                                <Sidebar />
-                                <div class="col-lg-9">{cardLists}</div>
-                            </div>
-                        </div>
-                    </div>
-                );
+      if (this.state.candidatesArray) {
+        const cardLists = this.state.candidatesArray.map(can => {
+          if (!this.state.pres) {
+            if (can.runningFor == "President") {
+              return (
+                <Col md={4} style={{ paddingBottom: "3%" }}>
+                  <Card style={{ width: "18rem" }}>
+                    <Card.Img variant="top" src={sampleImage} />
+                    <Card.Body>
+                      <Card.Title>{can.name}</Card.Title>
+                      <Card.Text>{can.description}</Card.Text>
+                      <Button variant="primary">Go somewhere</Button>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              );
             }
-            else {
+          } else if (!this.state.vice) {
+            if (can.runningFor == "VicePresident") {
+              return (
+                <Col md={4} style={{ paddingBottom: "3%" }}>
+                  <Card style={{ width: "18rem" }}>
+                    <Card.Img variant="top" src={sampleImage} />
+                    <Card.Body>
+                      <Card.Title>{can.name}</Card.Title>
+                      <Card.Text>{can.description}</Card.Text>
+                      <Button variant="primary">Go somewhere</Button>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              );
+            }
+          } else if (!this.state.sen) {
+            if (can.runningFor == "Senator") {
+              return (
+                <Col md={4} style={{ paddingBottom: "3%" }}>
+                  <Card style={{ width: "18rem" }}>
+                    <Card.Img variant="top" src={sampleImage} />
+                    <Card.Body>
+                      <Card.Title>{can.name}</Card.Title>
+                      <Card.Text>{can.description}</Card.Text>
+                      <Button variant="primary">Go somewhere</Button>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              );
+            }
+          } else if (!this.state.sen && !this.state.vice && !this.state.pres) {
+            return (
+              <Col md={4} style={{ paddingBottom: "3%" }}>
+                <Card style={{ width: "18rem" }}>
+                  <Card.Img variant="top" src={sampleImage} />
+                  <Card.Body>
+                    <Card.Title>{can.name}</Card.Title>
+                    <Card.Text>{can.description}</Card.Text>
+                    <Button variant="primary">Go somewhere</Button>
+                  </Card.Body>
+                </Card>
+              </Col>
+            );
+          }
+        });
 
-                return (
-                    <li class="list-group-item">
-                        <Card text="black" style={{ width: "auto" }}>
-                            <Card.Header>Apply To Be A Candidate</Card.Header>
-                            <Card.Body>
-                                <Form onSubmit={this.handleSubmit}>
-                                    <Form.Group controlId="fullname">
-                                        <Form.Label>Full Name</Form.Label>
-                                        <Form.Control placeholder="First Last"
-                                            name="fullname"
-                                            value={this.state.fullname}
-                                            onChange={this.handleChange}/>
-                                    </Form.Group>
-                                    <Form.Group controlId="College" >
-                                        <Form.Label>College</Form.Label>
-                                        <Form.Control placeholder="i.e. BCOE"
-                                            name="college"
-                                            value={this.state.college}
-                                            onChange={this.handleChange}/>
-                                    </Form.Group>
-                                    <Form.Group controlId="Major">
-                                        <Form.Label>Major</Form.Label>
-                                        <Form.Control placeholder="i.e. Computer Science"
-                                            name="major"
-                                            value={this.state.major}
-                                            onChange={this.handleChange}/>
-                                    </Form.Group>
-                                    <Form.Group controlId="RunningFor">
-                                        <Form.Label>What position are you running for?</Form.Label>
-                                        <Form.Control placeholder="i.e. President"
-                                            name="runningFor"
-                                            value={this.state.runningFor}
-                                            onChange={this.handleChange}/>
-                                    </Form.Group>
-                                    <Form.Group controlId="Description">
-                                        <Form.Label>Why should people vote for you?</Form.Label>
-                                        <Form.Control placeholder="Description"
-                                            name="description"
-                                            value={this.state.description}
-                                            onChange={this.handleChange}/>
-                                        <Form.Text className="text-muted">
-                                            This description may become public to prospective voters.
-                                        </Form.Text>
-                                    </Form.Group>
-                                    <Button variant="primary" type="submit">
-                                        Submit
-                                    </Button>
-                                    <Button variant="danger" onClick={this.cancel}>
-                                        Cancel
-                                    </Button>
-                                </Form>
-                            </Card.Body>
-                        </Card>
+        return (
+          <div class="site-wrap">
+            <RemoveScrollBar />
+            <div class="container d-none d-lg-block">
+              <div class="row">
+                <div class="col-12 text-center mb-4 mt-5">
+                  <img
+                    class="mb-0 site-logo"
+                    id="logoPic"
+                    src="images/asucrlogo.png"
+                  ></img>
+                </div>
+              </div>
+            </div>
+            <NavHeader />
+            <div class="container site-section padTop" data-aos="fade-up">
+              <Row>
+                <div class="col-sm-12 col-md-6 col-lg-3">
+                  <ul class="list-group" style={{paddingTop: "2px"}}>
+                    <li
+                      class="list-group-item tableItem"
+                      onClick={this.handlePres}
+                    >
+                      President
                     </li>
-                    );
-            }
-        }
+                    <li
+                      class="list-group-item tableItem"
+                      onClick={this.handleVice}
+                    >
+                      Vice President
+                    </li>
+                    <li
+                      class="list-group-item tableItem"
+                      onClick={this.handleSen}
+                    >
+                      Senator
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  style={{
+                    width: "75%",
+                    height: "100%"
+                  }}
+                >
+                  <Row>{cardLists}</Row>
+                  {/*{cardLists}*/}
+                </div>
+              </Row>
+            </div>
+          </div>
+        );
+      }
     } else {
       return <div></div>;
     }
