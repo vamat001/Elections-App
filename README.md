@@ -1,2 +1,2 @@
-# Get-a-Room
-a web application for streamlining club and private room reservations at UCR 
+# ASUCR Elections Application
+A web application for the ASUCR Elections
