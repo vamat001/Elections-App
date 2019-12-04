@@ -42,9 +42,9 @@ class NavHeader extends Component {
                     </Link>
                   </li>
                   <li>
-                    <a href="#" class="nav-link" onClick={this.goToLogin}>
+                    <Link to="/login" class="nav-link">
                       Vote
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <Link to="/adminLogin" class="nav-link">
