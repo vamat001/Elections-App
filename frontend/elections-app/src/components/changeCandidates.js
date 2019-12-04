@@ -75,7 +75,7 @@ handleSubmit = async(event) => {
       gradStudent = false;
    }
 
-   db.collection("undergradCandidates").doc(candidateID).set({
+   await db.collection("undergradCandidates").doc(candidateID).set({
     name: candidateName,
     ID: candidateID,
     major: this.state.major,
@@ -86,6 +86,19 @@ handleSubmit = async(event) => {
     })
     .then(this.openModal()
     )
+   .catch(function(error) {
+      console.error("Error writing document: ", error);
+   });
+   await db.collection('undergradVotes').get().then(snap => {
+    collectionSize = snap.size;
+   });
+   candidateID = `uid${collectionSize + 1}`;
+   await db.collection("undergradVotes").doc(candidateID).set({
+    name: candidateName,
+    runningFor: this.state.runningFor,
+    voteCount: 0,
+    voters: []
+    })
    .catch(function(error) {
       console.error("Error writing document: ", error);
    });
