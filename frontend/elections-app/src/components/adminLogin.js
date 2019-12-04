@@ -28,6 +28,7 @@ class AdminLogin extends Component {
       await axios.post(API_BASE + '/adminLogin', userData)
          .then((res) => {
             this.setState({ token: res.data.token });
+            console.log('bye');
             console.log("Updated token ",this.state);
          })
       const newToken = {
@@ -45,6 +46,7 @@ class AdminLogin extends Component {
                   isAdmin = true;
                }
             }catch(error){
+               console.log('hi');
                console.log(error);
             }
          })

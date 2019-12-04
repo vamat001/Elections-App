@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-import { Card, CardDeck, Button, Form } from "react-bootstrap";
+import { Card, CardDeck, Button, Form, } from "react-bootstrap";
+import NavHeader from "./NavHeader.js";
+import Sidebar from "./Sidebar.js";
+import "./Sidebar.css";
 import firebase, { auth, provider, firestore } from "./firebase.js";
 
 class candidates extends Component {
@@ -69,39 +72,53 @@ handleSubmit = async (event) => {
         if (this.state.candidatesArray) {
             if (!this.state.apply) {
                 const cardLists = this.state.candidatesArray.map(can => {
-                    return (
-                        <CardDeck>
-                            <div className="mt-1">
-                                <Card border="dark" bg="light" style={{ width: "auto" }}>
-                                    <Card.Body>
-                                        <Card.Title>{can.name}</Card.Title>
-                                        <Card.Subtitle className="mb-2 text-muted">
-                                            Running For: {can.runningFor}
-                                        </Card.Subtitle>
-                                        <Card.Text>
-                                            I'm majoring in {can.major}. {can.description}
-                                        </Card.Text>
-                                    </Card.Body>
-                                </Card>
+                    if (!can.gradStudent) {
+                        return (
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <h5 class="card-title">{can.name}</h5>
+                                    <p class="card-text">{can.description}</p>
+                                </div>
                             </div>
-                        </CardDeck>
-                    );
+                        );
+                    }
                 });
-
                 return (
-                    <div>
+                    <div class="site-wrap">
+                        <div class="site-mobile-menu site-navbar-target">
+                            <div class="site-mobile-menu-header">
+                                <div class="site-mobile-menu-close mt-3">
+                                    <span class="icon-close2 js-menu-toggle"></span>
+                                </div>
+                            </div>
+                            <div class="site-mobile-menu-body"></div>
+                        </div>
                         <Button variant="primary" size="lg" onClick={this.applyClick} block>
                             Apply To Be A Candidate Now!
                         </Button>
-                        <li class="list-group-item">
-                            <Card text="black" style={{ width: "auto" }}>
-                                <Card.Header>View All Candidates</Card.Header>
-                                <Card.Body>{cardLists}</Card.Body>
-                            </Card>
-                        </li>
+                        <div class="container d-none d-lg-block">
+                            <div class="row">
+                                <div class="col-12 text-center mb-4 mt-5">
+                                    <img
+                                        class="mb-0 site-logo"
+                                        id="logoPic"
+                                        src="images/asucrlogo.png"
+                                    ></img>
+                                </div>
+                            </div>
+                        </div>
+                        <NavHeader />
+                        <div class="container site-section padTop" data-aos="fade-up">
+                            <div class="row">
+                                <Sidebar />
+                                <div class="col-lg-9">{cardLists}</div>
+                            </div>
+                        </div>
                     </div>
                 );
-            } else {
+            }
+            else {
+
                 return (
                     <li class="list-group-item">
                         <Card text="black" style={{ width: "auto" }}>
