@@ -1,0 +1,129 @@
+[debug] [2019-12-04T17:26:26.606Z] ----------------------------------------------------------------------
+[debug] [2019-12-04T17:26:26.609Z] Command:       G:\Programs\NodeJS\node.exe C:\Users\ssjma\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js serve
+[debug] [2019-12-04T17:26:26.610Z] CLI Version:   7.8.1
+[debug] [2019-12-04T17:26:26.610Z] Platform:      win32
+[debug] [2019-12-04T17:26:26.610Z] Node Version:  v10.16.3
+[debug] [2019-12-04T17:26:26.612Z] Time:          Wed Dec 04 2019 09:26:26 GMT-0800 (Pacific Standard Time)
+[debug] [2019-12-04T17:26:26.612Z] ----------------------------------------------------------------------
+[debug] [2019-12-04T17:26:26.612Z] 
+[debug] [2019-12-04T17:26:26.625Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-12-04T17:26:26.626Z] > authorizing via signed-in user
+[debug] [2019-12-04T17:26:26.626Z] [iam] checking project elections-app-4e4df for permissions ["firebase.projects.get"]
+[debug] [2019-12-04T17:26:26.628Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/elections-app-4e4df:testIamPermissions  
+
+[debug] [2019-12-04T17:26:27.013Z] <<< HTTP RESPONSE 200
+[debug] [2019-12-04T17:26:27.015Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/elections-app-4e4df  
+ 
+[debug] [2019-12-04T17:26:27.217Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'G:\Coding\School\new clone\Elections-App\backend'...
+[info] 
+[warn] !  Your requested "node" version "8" doesn't match your global version "10"
+[info] +  functions: Emulator started at http://localhost:5000
+[info] i  functions: Watching "G:\Coding\School\new clone\Elections-App\backend\functions" for Cloud Functions...
+[debug] [2019-12-04T17:26:29.793Z] [worker-~diagnostic~-f8b6cc5c-d93e-4e0e-988d-705e0728125c]: Assigning socketPath: \\?\pipe\G:\Coding\School\new clone\Elections-App\backend\functions\14052
+[debug] [2019-12-04T17:26:29.794Z] [worker-~diagnostic~-f8b6cc5c-d93e-4e0e-988d-705e0728125c]: BUSY
+[debug] [2019-12-04T17:26:30.562Z] [runtime-status] [14052] Functions runtime initialized. {"cwd":"G:\\Coding\\School\\new clone\\Elections-App\\backend\\functions","node_version":"10.16.3"}
+[debug] [2019-12-04T17:26:30.565Z] [runtime-status] [14052] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2019-12-04T17:26:30.573Z] [runtime-status] [14052] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.6.1","resolution":"G:\\Coding\\School\\new clone\\Elections-App\\backend\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-12-04T17:26:30.576Z] [runtime-status] [14052] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"G:\\Coding\\School\\new clone\\Elections-App\\backend\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-12-04T17:26:30.578Z] [runtime-status] [14052] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"G:\\Coding\\School\\new clone\\Elections-App\\backend\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[info] +  functions[api]: http function initialized (http://localhost:5000/elections-app-4e4df/us-central1/api).
+[debug] [2019-12-04T17:26:31.799Z] [worker-~diagnostic~-f8b6cc5c-d93e-4e0e-988d-705e0728125c]: exited
+[debug] [2019-12-04T17:26:31.800Z] [worker-~diagnostic~-f8b6cc5c-d93e-4e0e-988d-705e0728125c]: FINISHED
+[debug] [2019-12-04T17:30:31.166Z] Accepted request GET /elections-app-4e4df/us-central1/api/getAllVotes --> api
+[debug] [2019-12-04T17:30:31.183Z] [worker-api-9b53729d-05ca-472e-bc4d-10a270137a64]: Assigning socketPath: \\?\pipe\G:\Coding\School\new clone\Elections-App\backend\functions\14776
+[debug] [2019-12-04T17:30:31.184Z] [worker-api-9b53729d-05ca-472e-bc4d-10a270137a64]: BUSY
+[debug] [2019-12-04T17:30:32.121Z] [runtime-status] [14776] Functions runtime initialized. {"cwd":"G:\\Coding\\School\\new clone\\Elections-App\\backend\\functions","node_version":"10.16.3"}
+[debug] [2019-12-04T17:30:32.124Z] [runtime-status] [14776] Disabled runtime features: {"functions_config_helper":true,"network_filtering":true,"timeout":true,"memory_limiting":true,"admin_stubs":true,"pubsub_emulator":true}
+[debug] [2019-12-04T17:30:32.132Z] [runtime-status] [14776] Resolved module firebase-admin {"declared":true,"installed":true,"version":"8.6.1","resolution":"G:\\Coding\\School\\new clone\\Elections-App\\backend\\functions\\node_modules\\firebase-admin\\lib\\index.js"}
+[debug] [2019-12-04T17:30:32.136Z] [runtime-status] [14776] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"G:\\Coding\\School\\new clone\\Elections-App\\backend\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-12-04T17:30:32.137Z] [runtime-status] [14776] Resolved module firebase-functions {"declared":true,"installed":true,"version":"3.3.0","resolution":"G:\\Coding\\School\\new clone\\Elections-App\\backend\\functions\\node_modules\\firebase-functions\\lib\\index.js"}
+[debug] [2019-12-04T17:30:33.246Z] [runtime-status] [14776] Trigger "api" has been found, beginning invocation!
+[info] i  functions: Beginning execution of "api"
+[debug] [2019-12-04T17:30:33.247Z] [runtime-status] [14776] triggerDefinition {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2019-12-04T17:30:33.248Z] [runtime-status] [14776] Running api in mode HTTPS
+[debug] [2019-12-04T17:30:33.254Z] [runtime-status] [14776] Attempting to listen to socketPath: \\?\pipe\G:\Coding\School\new clone\Elections-App\backend\functions\14776
+[debug] [2019-12-04T17:30:33.263Z] [functions] Runtime ready! Sending request!
+[debug] [2019-12-04T17:30:33.280Z] [runtime-status] [14776] Ephemeral server handling GET request
+[debug] [2019-12-04T17:30:33.823Z] [runtime-status] [14776] Ephemeral server survived.
+[info] i  functions: Finished "api" in ~1s
+[debug] [2019-12-04T17:30:34.304Z] [worker-api-9b53729d-05ca-472e-bc4d-10a270137a64]: IDLE
+[debug] [2019-12-04T17:34:09.291Z] Accepted request OPTIONS /elections-app-4e4df/us-central1/api/adminLogin --> api
+[debug] [2019-12-04T17:34:09.292Z] [worker-api-9b53729d-05ca-472e-bc4d-10a270137a64]: Assigning socketPath: \\?\pipe\G:\Coding\School\new clone\Elections-App\backend\functions\14776
+[debug] [2019-12-04T17:34:09.292Z] [worker-api-9b53729d-05ca-472e-bc4d-10a270137a64]: BUSY
+[debug] [2019-12-04T17:34:09.294Z] [runtime-status] [14776] Trigger "api" has been found, beginning invocation!
+[info] i  functions: Beginning execution of "api"
+[debug] [2019-12-04T17:34:09.297Z] [runtime-status] [14776] triggerDefinition {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2019-12-04T17:34:09.297Z] [runtime-status] [14776] Running api in mode HTTPS
+[debug] [2019-12-04T17:34:09.298Z] [runtime-status] [14776] Attempting to listen to socketPath: \\?\pipe\G:\Coding\School\new clone\Elections-App\backend\functions\14776
+[debug] [2019-12-04T17:34:09.301Z] [functions] Runtime ready! Sending request!
+[debug] [2019-12-04T17:34:09.309Z] [runtime-status] [14776] Ephemeral server handling OPTIONS request
+[debug] [2019-12-04T17:34:09.314Z] [runtime-status] [14776] Ephemeral server survived.
+[info] i  functions: Finished "api" in ~1s
+[debug] [2019-12-04T17:34:09.317Z] [worker-api-9b53729d-05ca-472e-bc4d-10a270137a64]: IDLE
+[debug] [2019-12-04T17:34:09.324Z] Accepted request POST /elections-app-4e4df/us-central1/api/adminLogin --> api
+[debug] [2019-12-04T17:34:09.324Z] [worker-api-9b53729d-05ca-472e-bc4d-10a270137a64]: Assigning socketPath: \\?\pipe\G:\Coding\School\new clone\Elections-App\backend\functions\14776
+[debug] [2019-12-04T17:34:09.325Z] [worker-api-9b53729d-05ca-472e-bc4d-10a270137a64]: BUSY
+[debug] [2019-12-04T17:34:09.326Z] [runtime-status] [14776] Trigger "api" has been found, beginning invocation!
+[info] i  functions: Beginning execution of "api"
+[debug] [2019-12-04T17:34:09.328Z] [runtime-status] [14776] triggerDefinition {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2019-12-04T17:34:09.328Z] [runtime-status] [14776] Running api in mode HTTPS
+[debug] [2019-12-04T17:34:09.329Z] [runtime-status] [14776] Attempting to listen to socketPath: \\?\pipe\G:\Coding\School\new clone\Elections-App\backend\functions\14776
+[debug] [2019-12-04T17:34:09.332Z] [functions] Runtime ready! Sending request!
+[debug] [2019-12-04T17:34:09.383Z] [runtime-status] [14776] Ephemeral server handling POST request
+[debug] [2019-12-04T17:34:09.404Z] [runtime-status] [14776] Ephemeral server survived.
+[info] i  functions: Finished "api" in ~1s
+[debug] [2019-12-04T17:34:10.046Z] [worker-api-9b53729d-05ca-472e-bc4d-10a270137a64]: IDLE
+[debug] [2019-12-04T17:34:10.062Z] Accepted request OPTIONS /elections-app-4e4df/us-central1/api/claims --> api
+[debug] [2019-12-04T17:34:10.062Z] [worker-api-9b53729d-05ca-472e-bc4d-10a270137a64]: Assigning socketPath: \\?\pipe\G:\Coding\School\new clone\Elections-App\backend\functions\14776
+[debug] [2019-12-04T17:34:10.063Z] [worker-api-9b53729d-05ca-472e-bc4d-10a270137a64]: BUSY
+[debug] [2019-12-04T17:34:10.064Z] [runtime-status] [14776] Trigger "api" has been found, beginning invocation!
+[info] i  functions: Beginning execution of "api"
+[debug] [2019-12-04T17:34:10.066Z] [runtime-status] [14776] triggerDefinition {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2019-12-04T17:34:10.066Z] [runtime-status] [14776] Running api in mode HTTPS
+[debug] [2019-12-04T17:34:10.067Z] [runtime-status] [14776] Attempting to listen to socketPath: \\?\pipe\G:\Coding\School\new clone\Elections-App\backend\functions\14776
+[debug] [2019-12-04T17:34:10.069Z] [functions] Runtime ready! Sending request!
+[debug] [2019-12-04T17:34:10.074Z] [runtime-status] [14776] Ephemeral server handling OPTIONS request
+[debug] [2019-12-04T17:34:10.077Z] [runtime-status] [14776] Ephemeral server survived.
+[info] i  functions: Finished "api" in ~1s
+[debug] [2019-12-04T17:34:10.080Z] [worker-api-9b53729d-05ca-472e-bc4d-10a270137a64]: IDLE
+[debug] [2019-12-04T17:34:10.087Z] Accepted request POST /elections-app-4e4df/us-central1/api/claims --> api
+[debug] [2019-12-04T17:34:10.087Z] [worker-api-9b53729d-05ca-472e-bc4d-10a270137a64]: Assigning socketPath: \\?\pipe\G:\Coding\School\new clone\Elections-App\backend\functions\14776
+[debug] [2019-12-04T17:34:10.087Z] [worker-api-9b53729d-05ca-472e-bc4d-10a270137a64]: BUSY
+[debug] [2019-12-04T17:34:10.089Z] [runtime-status] [14776] Trigger "api" has been found, beginning invocation!
+[info] i  functions: Beginning execution of "api"
+[debug] [2019-12-04T17:34:10.092Z] [runtime-status] [14776] triggerDefinition {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2019-12-04T17:34:10.092Z] [runtime-status] [14776] Running api in mode HTTPS
+[debug] [2019-12-04T17:34:10.092Z] [runtime-status] [14776] Attempting to listen to socketPath: \\?\pipe\G:\Coding\School\new clone\Elections-App\backend\functions\14776
+[debug] [2019-12-04T17:34:10.095Z] [functions] Runtime ready! Sending request!
+[debug] [2019-12-04T17:34:10.101Z] [runtime-status] [14776] Ephemeral server handling POST request
+[debug] [2019-12-04T17:34:10.187Z] [runtime-status] [14776] Ephemeral server survived.
+[info] i  functions: Finished "api" in ~1s
+[debug] [2019-12-04T17:34:10.465Z] [worker-api-9b53729d-05ca-472e-bc4d-10a270137a64]: IDLE
+[debug] [2019-12-04T17:34:10.554Z] Accepted request GET /elections-app-4e4df/us-central1/api/getAllPositions --> api
+[debug] [2019-12-04T17:34:10.555Z] [worker-api-9b53729d-05ca-472e-bc4d-10a270137a64]: Assigning socketPath: \\?\pipe\G:\Coding\School\new clone\Elections-App\backend\functions\14776
+[debug] [2019-12-04T17:34:10.555Z] [worker-api-9b53729d-05ca-472e-bc4d-10a270137a64]: BUSY
+[debug] [2019-12-04T17:34:10.556Z] [runtime-status] [14776] Trigger "api" has been found, beginning invocation!
+[info] i  functions: Beginning execution of "api"
+[debug] [2019-12-04T17:34:10.558Z] [runtime-status] [14776] triggerDefinition {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2019-12-04T17:34:10.558Z] [runtime-status] [14776] Running api in mode HTTPS
+[debug] [2019-12-04T17:34:10.558Z] [runtime-status] [14776] Attempting to listen to socketPath: \\?\pipe\G:\Coding\School\new clone\Elections-App\backend\functions\14776
+[debug] [2019-12-04T17:34:10.562Z] [functions] Runtime ready! Sending request!
+[debug] [2019-12-04T17:34:10.565Z] [runtime-status] [14776] Ephemeral server handling GET request
+[debug] [2019-12-04T17:34:10.567Z] [runtime-status] [14776] Ephemeral server survived.
+[info] i  functions: Finished "api" in ~1s
+[debug] [2019-12-04T17:34:10.708Z] [worker-api-9b53729d-05ca-472e-bc4d-10a270137a64]: IDLE
+[debug] [2019-12-04T17:34:53.471Z] Accepted request GET /elections-app-4e4df/us-central1/api/getAllVotes --> api
+[debug] [2019-12-04T17:34:53.471Z] [worker-api-9b53729d-05ca-472e-bc4d-10a270137a64]: Assigning socketPath: \\?\pipe\G:\Coding\School\new clone\Elections-App\backend\functions\14776
+[debug] [2019-12-04T17:34:53.471Z] [worker-api-9b53729d-05ca-472e-bc4d-10a270137a64]: BUSY
+[debug] [2019-12-04T17:34:53.472Z] [runtime-status] [14776] Trigger "api" has been found, beginning invocation!
+[info] i  functions: Beginning execution of "api"
+[debug] [2019-12-04T17:34:53.473Z] [runtime-status] [14776] triggerDefinition {"httpsTrigger":{},"name":"api","entryPoint":"api"}
+[debug] [2019-12-04T17:34:53.473Z] [runtime-status] [14776] Running api in mode HTTPS
+[debug] [2019-12-04T17:34:53.474Z] [runtime-status] [14776] Attempting to listen to socketPath: \\?\pipe\G:\Coding\School\new clone\Elections-App\backend\functions\14776
+[debug] [2019-12-04T17:34:53.475Z] [functions] Runtime ready! Sending request!
+[debug] [2019-12-04T17:34:53.477Z] [runtime-status] [14776] Ephemeral server handling GET request
+[debug] [2019-12-04T17:34:53.478Z] [runtime-status] [14776] Ephemeral server survived.
+[info] i  functions: Finished "api" in ~1s
+[debug] [2019-12-04T17:34:53.561Z] [worker-api-9b53729d-05ca-472e-bc4d-10a270137a64]: IDLE
