@@ -4,6 +4,7 @@ import firebase from "./firebase.js";
 import "./referendums.css";
 import RefModal from "./modal.js";
 import { Button, ButtonToolbar } from "react-bootstrap";
+import { RemoveScrollBar } from "react-remove-scroll-bar";
 
 class referendums extends Component {
   constructor(props) {
@@ -59,6 +60,7 @@ class referendums extends Component {
           data-target=".site-navbar-target"
           data-offset="300"
         >
+          <RemoveScrollBar />
           <div class="site-wrap">
             <div class="site-mobile-menu site-navbar-target">
               <div class="site-mobile-menu-header">

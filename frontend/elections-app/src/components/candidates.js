@@ -2,11 +2,15 @@ import React, { Component } from "react";
 import NavHeader from "./NavHeader.js";
 import Sidebar from "./Sidebar.js";
 import "./Sidebar.css";
+import sampleImage from "../avatar.png";
 import firebase, { auth, provider, firestore } from "./firebase.js";
+import { Card, Button, Row, Col } from "react-bootstrap";
+import { RemoveScrollBar } from "react-remove-scroll-bar";
 
 class candidates extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    // this.state = { cantoggle: true };
     firebase
       .firestore()
       .collection("Candidates")
@@ -27,51 +31,89 @@ class candidates extends Component {
         },
         () => null
       );
-    firebase
-      .firestore()
-      .collection("Positions")
-      .onSnapshot(
-        querySnapshot => {
-          this.setState({
-            positionsArray: querySnapshot.docs.map(doc => {
-              return {
-                undergradCands: doc.data().undergradCandidates,
-                description: doc.data().description,
-                id: doc.id
-              };
-            })
-          });
-        },
-        () => null
-      );
+    this.setState({ pres: false, vice: false, sen: false });
   }
+
+  handlePres = () => {
+    this.setState({ pres: false, vice: true, sen: true });
+  };
+
+  handleVice = () => {
+    this.setState({ pres: true, vice: false, sen: true });
+  };
+
+  handleSen = () => {
+    this.setState({ pres: true, vice: true, sen: false });
+  };
 
   render() {
     if (this.state) {
       if (this.state.candidatesArray) {
         const cardLists = this.state.candidatesArray.map(can => {
-          if (!can.gradStudent) {
+          if (!this.state.pres) {
+            if (can.runningFor == "President") {
+              return (
+                <Col md={4} style={{ paddingBottom: "3%" }}>
+                  <Card style={{ width: "18rem" }}>
+                    <Card.Img variant="top" src={sampleImage} />
+                    <Card.Body>
+                      <Card.Title>{can.name}</Card.Title>
+                      <Card.Text>{can.description}</Card.Text>
+                      <Button variant="primary">Go somewhere</Button>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              );
+            }
+          } else if (!this.state.vice) {
+            if (can.runningFor == "VicePresident") {
+              return (
+                <Col md={4} style={{ paddingBottom: "3%" }}>
+                  <Card style={{ width: "18rem" }}>
+                    <Card.Img variant="top" src={sampleImage} />
+                    <Card.Body>
+                      <Card.Title>{can.name}</Card.Title>
+                      <Card.Text>{can.description}</Card.Text>
+                      <Button variant="primary">Go somewhere</Button>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              );
+            }
+          } else if (!this.state.sen) {
+            if (can.runningFor == "Senator") {
+              return (
+                <Col md={4} style={{ paddingBottom: "3%" }}>
+                  <Card style={{ width: "18rem" }}>
+                    <Card.Img variant="top" src={sampleImage} />
+                    <Card.Body>
+                      <Card.Title>{can.name}</Card.Title>
+                      <Card.Text>{can.description}</Card.Text>
+                      <Button variant="primary">Go somewhere</Button>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              );
+            }
+          } else if (!this.state.sen && !this.state.vice && !this.state.pres) {
             return (
-              <div class="card text-center">
-                <div class="card-body">
-                  <h5 class="card-title">{can.name}</h5>
-                  <p class="card-text">{can.description}</p>
-                </div>
-              </div>
+              <Col md={4} style={{ paddingBottom: "3%" }}>
+                <Card style={{ width: "18rem" }}>
+                  <Card.Img variant="top" src={sampleImage} />
+                  <Card.Body>
+                    <Card.Title>{can.name}</Card.Title>
+                    <Card.Text>{can.description}</Card.Text>
+                    <Button variant="primary">Go somewhere</Button>
+                  </Card.Body>
+                </Card>
+              </Col>
             );
           }
         });
+
         return (
           <div class="site-wrap">
-            <div class="site-mobile-menu site-navbar-target">
-              <div class="site-mobile-menu-header">
-                <div class="site-mobile-menu-close mt-3">
-                  <span class="icon-close2 js-menu-toggle"></span>
-                </div>
-              </div>
-              <div class="site-mobile-menu-body"></div>
-            </div>
-
+            <RemoveScrollBar />
             <div class="container d-none d-lg-block">
               <div class="row">
                 <div class="col-12 text-center mb-4 mt-5">
@@ -85,16 +127,45 @@ class candidates extends Component {
             </div>
             <NavHeader />
             <div class="container site-section padTop" data-aos="fade-up">
-              <div class="row">
-                <Sidebar />
-                <div class="col-lg-9">{cardLists}</div>
-              </div>
+              <Row>
+                <div class="col-sm-12 col-md-6 col-lg-3">
+                  <ul class="list-group">
+                    <li
+                      class="list-group-item tableItem"
+                      onClick={this.handlePres}
+                    >
+                      President
+                    </li>
+                    <li
+                      class="list-group-item tableItem"
+                      onClick={this.handleVice}
+                    >
+                      Vice President
+                    </li>
+                    <li
+                      class="list-group-item tableItem"
+                      onClick={this.handleSen}
+                    >
+                      Senator
+                    </li>
+                  </ul>
+                </div>
+                <div
+                  style={{
+                    width: "75%",
+                    height: "100%"
+                  }}
+                >
+                  <Row>{cardLists}</Row>
+                  {/*{cardLists}*/}
+                </div>
+              </Row>
             </div>
           </div>
         );
       }
     } else {
-      return <div class="list-group"></div>;
+      return <div></div>;
     }
   }
 }
